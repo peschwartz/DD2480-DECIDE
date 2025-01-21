@@ -8,3 +8,5 @@
 
 ## Statement of Contributions
 
+## Statement of way of working
+
