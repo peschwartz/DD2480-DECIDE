@@ -8,6 +8,8 @@ Due Jan 31 by 19.00
 4. Grant the right to use it
 5. Don't change it
 
+Testing with unittest Module in Python
+
 ## Tasks for this assignment
 - Create a good README
 - Write a statement of contributions for each team member
