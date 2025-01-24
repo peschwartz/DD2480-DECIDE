@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List
+from typing import List, Tuple
 
 # Constants
 PI = 3.141592653589793
@@ -16,7 +16,7 @@ class CompType(Enum):
     GT = 1113
 
 # Type aliases
-Coordinate = List[float]  # Array of doubles
+Coordinate = Tuple  # Tuple of two floats (x, y)
 CMatrix = List[List[Connectors]]  # 2D array of Connectors [15][15]
 BMatrix = List[List[bool]]  # 2D array of booleans [15][15]
 Vector = List[bool]  # Array of 15 booleans
@@ -46,17 +46,10 @@ class Parameters:
 
 # Global variables
 PARAMETERS: Parameters = Parameters()
-X: Coordinate = []  # X coordinates of data points
-Y: Coordinate = []  # Y coordinates of data points
+POINTS: List[Coordinate] = []  # Array of the coordinates of data points
 NUMPOINTS: int = 0  # Number of data points
 LCM: CMatrix = []   # Logical Connector Matrix
 PUM: BMatrix = []   # Preliminary Unlocking Matrix
-CMV: Vector = [None] * 15    # Conditions Met Vector
-FUV: Vector = [None] * 15    # Final Unlocking Vector
+CMV: Vector = []   # Conditions Met Vector
+FUV: Vector = []    # Final Unlocking Vector
 LAUNCH: bool = False          # Decision: Launch or No Launch
-
-def DOUBLECOMPARE(a: float, b: float) -> CompType:
-    """Compares floating point numbers"""
-    if abs(a - b) < 0.000001:
-        return CompType.EQ
-    return CompType.LT if a < b else CompType.GT
