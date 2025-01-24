@@ -18,7 +18,10 @@ class TestCMV(unittest.TestCase):
         self.assertEqual(lic_2(PARAMETERS.EPSILON), False)
 
     def test_3(self):
-        self.assertEqual(lic_3(PARAMETERS.AREA1), False)
+        PARAMETERS.AREA1 = 10
+        POINTS = [(4,0), (5,0), (0,5), (0,0)]
+        NUMPOINTS = 4
+        self.assertEqual(lic_3(PARAMETERS.AREA1, POINTS, NUMPOINTS), True)
 
     def test_4(self):
         self.assertEqual(lic_4(PARAMETERS.Q_PTS, PARAMETERS.QUADS), False)
