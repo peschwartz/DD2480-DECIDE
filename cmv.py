@@ -1,4 +1,5 @@
-from GLOBAL_VARS import *
+from GLOBAL_VARS import Coordinate
+from typing import List
 import math
 # cmv functions go here
 # 15 conditions to be met to create the 15 element CMV vector
@@ -17,7 +18,7 @@ def anglehelper(fst: Coordinate, snd: Coordinate, trd: Coordinate):
     return math.asin( math.dist(snd, fst) / math.dist(snd, trd) )
 
 # LIC 2
-def lic_2(EPSILON: float):
+def lic_2(POINTS: List[Coordinate], EPSILON: float, PI: float):
     assert 0 <= EPSILON and EPSILON < PI
     min_angle = PI - EPSILON
     max_angle = PI + EPSILON
