@@ -1,3 +1,5 @@
+from GLOBAL_VARS import *
+import math
 # cmv functions go here
 # 15 conditions to be met to create the 15 element CMV vector
 
@@ -9,8 +11,30 @@ def lic_0(LENGTH1: float):
 def lic_1(RADIUS1: float):
     return False
 
+
+def anglehelper(fst: Coordinate, snd: Coordinate, trd: Coordinate):
+    assert fst != snd and trd != snd
+    return math.asin( math.dist(snd, fst) / math.dist(snd, trd) )
+
 # LIC 2
 def lic_2(EPSILON: float):
+    assert 0 <= EPSILON and EPSILON < PI
+    min_angle = PI - EPSILON
+    max_angle = PI + EPSILON
+    for fst, snd, trd in zip(POINTS, POINTS[1:], POINTS[2:]):
+        # If either the first point or the last point (or both) coincides with the vertex, the angle is undefined and the LIC is not satisfied by those three points
+        if fst == snd or trd == snd:
+            continue;
+
+        angle = anglehelper(fst, snd, trd)
+        if angle > min_angle or max_angle > angle:
+            return True
+
+    return False
+
+
+
+
     return False
 
 # LIC 3
