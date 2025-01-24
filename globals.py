@@ -51,8 +51,8 @@ Y: Coordinate = []  # Y coordinates of data points
 NUMPOINTS: int = 0  # Number of data points
 LCM: CMatrix = []   # Logical Connector Matrix
 PUM: BMatrix = []   # Preliminary Unlocking Matrix
-CMV: Vector = []    # Conditions Met Vector
-FUV: Vector = []    # Final Unlocking Vector
+CMV: Vector = [None] * 15    # Conditions Met Vector
+FUV: Vector = [None] * 15    # Final Unlocking Vector
 LAUNCH: bool = False          # Decision: Launch or No Launch
 
 def DOUBLECOMPARE(a: float, b: float) -> CompType:
