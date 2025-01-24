@@ -54,8 +54,40 @@ class Test4(unittest.TestCase):
         self.assertEqual(lic_4(PARAMETERS.Q_PTS, PARAMETERS.QUADS), False)
 
 class Test5(unittest.TestCase):
-    def test_5(self):
-        self.assertEqual(lic_5(PARAMETERS.DIST), False)
+    def setUp(self):
+        # reset points before each test
+        self.points = []
+        self.num_points = 0
+
+    def test_basic_true(self):
+        # test when there are two consecutive points where second X is less than first X
+        self.points = [(1, 0), (0, 0)]  # second X less than first X
+        self.num_points = 2
+        self.assertTrue(lic_5(self.points, self.num_points))
+
+    def test_basic_false(self):
+        # test when points are in increasing X order
+        self.points = [(0, 0), (1, 0), (2, 0)]
+        self.num_points = 3
+        self.assertFalse(lic_5(self.points, self.num_points))
+
+    def test_equal_x(self):
+        # test when consecutive points have equal X coordinates
+        self.points = [(1, 0), (1, 0)]
+        self.num_points = 2
+        self.assertFalse(lic_5(self.points, self.num_points))
+
+    def test_multiple_points_true(self):
+        # test with multiple points where one pair satisfies the condition
+        self.points = [(0, 0), (1, 0), (2, 0), (1, 0)]  # last pair satisfies X[j] - X[i] < 0
+        self.num_points = 4
+        self.assertTrue(lic_5(self.points, self.num_points))
+
+    def test_insufficient_points(self):
+        # test with less than 2 points
+        self.points = [(1, 0)]
+        self.num_points = 1
+        self.assertFalse(lic_5(self.points, self.num_points))
 
 class Test6(unittest.TestCase):
     def test_6(self):
