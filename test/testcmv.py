@@ -74,8 +74,34 @@ class Test9(unittest.TestCase):
         self.assertEqual(lic_9(PARAMETERS.C_PTS, PARAMETERS.D_PTS), False)
 
 class Test10(unittest.TestCase):
-    def test_10(self):
-        self.assertEqual(lic_10(PARAMETERS.E_PTS, PARAMETERS.F_PTS), False)
+    def test_valid_triangle(self):
+        # points at indices 0, 2, 4 form a triangle with area > 10
+        self.points = [(0,0), (1,1), (10,10), (5,0), (0,10)]
+        self.num_points = 6
+        self.area = 10
+        self.e_pts = 1
+        self.f_pts = 1
+        self.assertTrue(lic_10(self.e_pts, self.f_pts, self.area, self.points, self.num_points))
+    
+    def test_insufficient_points(self):
+        # test with less than 5 points
+        small_points = [(0,0), (1,1), (2,2), (3,3)]
+        self.points = small_points
+        self.num_points = 4
+        self.area = 1
+        self.e_pts = 1
+        self.f_pts = 1
+        self.assertFalse(lic_10(self.e_pts, self.f_pts, self.area, self.points, self.num_points))
+    
+    def test_no_valid_triangle(self):
+        # points that don't form a triangle with area > 10
+        small_triangle = [(0,0), (1,0), (2,0), (1,1), (0,1)]
+        self.points = small_triangle
+        self.num_points = 5
+        self.area = 10
+        self.e_pts = 1
+        self.f_pts = 1
+        self.assertFalse(lic_10(self.e_pts, self.f_pts, self.area, self.points, self.num_points))
 
 class Test11(unittest.TestCase):
     def test_11(self):
