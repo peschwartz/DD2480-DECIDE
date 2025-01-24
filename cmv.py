@@ -5,11 +5,13 @@ from GLOBAL_VARS import *
 
 
 # LIC 0
-def lic_0(LENGTH1: float, NUMPOINTS: int, X: Coordinate, Y: Coordinate):
+def lic_0(LENGTH1: float, POINTS: list, NUMPOINTS: int):
     if NUMPOINTS < 2:
         return False
     for i in range(NUMPOINTS-1):
-        if distance(X[i], Y[i], X[i+1], Y[i+1]) > LENGTH1:
+        x1, y1 = POINTS[i]
+        x2, y2 = POINTS[i+1]
+        if distance(x1, y1, x2, y2) > LENGTH1:
             return True
     return False
 

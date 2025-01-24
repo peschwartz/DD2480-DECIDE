@@ -10,51 +10,50 @@ from lib.util import *
 class Test0(unittest.TestCase):
 
     def setUp(self):
-        self.PARAMETERS = PARAMETERS
-        self.X = []
-        self.Y = []
-
+        self.parameters = PARAMETERS
+        self.points = []
+        self.num_points = 0
     def test_basic_false(self):
         # test when points are closer than LENGTH1
-        self.X = [0, 1]
-        self.Y = [0, 0]
-        self.PARAMETERS.LENGTH1 = 2
-        self.assertFalse(lic_0(self.PARAMETERS.LENGTH1, len(self.X), self.X, self.Y))
+        self.points = [(0, 0), (1, 0)]
+        self.num_points = 2
+        self.parameters.LENGTH1 = 2
+        self.assertFalse(lic_0(self.parameters.LENGTH1, self.points, self.num_points))
 
     def test_basic_true(self):
         # test when points are further than LENGTH1
-        self.X = [0, 3]
-        self.Y = [0, 0]
-        self.PARAMETERS.LENGTH1 = 2
-        self.assertTrue(lic_0(self.PARAMETERS.LENGTH1, len(self.X), self.X, self.Y))
+        self.points = [(0, 0), (3, 0)]
+        self.num_points = 2
+        self.parameters.LENGTH1 = 2
+        self.assertTrue(lic_0(self.parameters.LENGTH1, self.points, self.num_points))
 
     def test_exact_length(self):
         # test when points are exactly LENGTH1 apart
-        self.X = [0, 2]
-        self.Y = [0, 0]
-        self.PARAMETERS.LENGTH1 = 2
-        self.assertFalse(lic_0(self.PARAMETERS.LENGTH1, len(self.X), self.X, self.Y))
+        self.points = [(0, 0), (2, 0)]
+        self.num_points = 2
+        self.parameters.LENGTH1 = 2
+        self.assertFalse(lic_0(self.parameters.LENGTH1, self.points, self.num_points))
 
     def test_diagonal_distance(self):
         # test with points at diagonal distance
-        self.X = [0, 2]
-        self.Y = [0, 2]
-        self.PARAMETERS.LENGTH1 = 2
-        self.assertTrue(lic_0(self.PARAMETERS.LENGTH1, len(self.X), self.X, self.Y))
+        self.points = [(0, 0), (2, 2)]
+        self.num_points = 2
+        self.parameters.LENGTH1 = 2
+        self.assertTrue(lic_0(self.parameters.LENGTH1, self.points, self.num_points))
 
     def test_insufficient_points(self):
         # test with less than 2 points
-        self.X = [0]
-        self.Y = [0]
-        self.PARAMETERS.LENGTH1 = 2
-        self.assertFalse(lic_0(self.PARAMETERS.LENGTH1, len(self.X), self.X, self.Y))
+        self.points = [(0, 0)]
+        self.num_points = 1
+        self.parameters.LENGTH1 = 2
+        self.assertFalse(lic_0(self.parameters.LENGTH1, self.points, self.num_points))
 
     def test_multiple_points(self):
         # test with multiple points where only one pair satisfies the condition
-        self.X = [0, 1, 4, 5]
-        self.Y = [0, 0, 0, 0]
-        self.PARAMETERS.LENGTH1 = 2
-        self.assertTrue(lic_0(self.PARAMETERS.LENGTH1, len(self.X), self.X, self.Y))
+        self.points = [(0, 0), (1, 0), (4, 0), (5, 0)]
+        self.num_points = 4
+        self.parameters.LENGTH1 = 2
+        self.assertTrue(lic_0(self.parameters.LENGTH1, self.points, self.num_points))
 
 class Test1(unittest.TestCase):
     def test_1(self):
