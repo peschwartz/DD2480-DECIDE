@@ -33,11 +33,6 @@ def lic_2(POINTS: List[Coordinate], EPSILON: float, PI: float):
 
     return False
 
-
-
-
-    return False
-
 # LIC 3
 def lic_3(AREA1: float):
     return False

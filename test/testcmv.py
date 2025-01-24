@@ -14,9 +14,24 @@ class TestCMV(unittest.TestCase):
     def test_1(self):
         self.assertEqual(lic_1(PARAMETERS.RADIUS1), False)
 
-    def test_2(self):
-        self.assertEqual(lic_2(PARAMETERS.EPSILON), False)
+    # TESTS FOR LIC 2
+    def test_20(self):
+        # Point 1 and/or 2 coincides
+        self.assertEqual(lic_2([(1,0), (0,2), (0,2)], 2, math.pi), False)
 
+    def test_21(self):
+        # A set of three points with an angle that should be valid
+        self.assertEqual(lic_2([(2,0), (0,0), (1,1)], math.pi / 2, math.pi), True)
+
+    def test_22(self):
+        # A set of three points with an angle that should NOT be valid
+        self.assertEqual(lic_2([(-1,1), (0,0), (2,1), ()], math.pi / 2, math.pi), False)
+
+    def test_23(self):
+        # A set which contain three point that have a valid angle but are not consecutive
+        self.assertEqual(lic_2([(-1,1), (0,0), (2,1), (4,2)], math.pi / 2, math.pi), False)
+
+    # TESTS FOR LIC 3, etc...
     def test_3(self):
         self.assertEqual(lic_3(PARAMETERS.AREA1), False)
 
