@@ -1,5 +1,5 @@
 import unittest
-from test.CMV import TestCMV
+from testcmv import TestCMV
 
 if __name__ == '__main__':
     test_suite = unittest.TestLoader().loadTestsFromTestCase(TestCMV)
