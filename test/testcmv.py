@@ -9,8 +9,52 @@ from lib.util import *
 
 class Test0(unittest.TestCase):
 
-    def test_0(self):
-        self.assertEqual(lic_0(PARAMETERS.LENGTH1), False)
+    def setUp(self):
+        self.PARAMETERS = PARAMETERS
+        self.X = []
+        self.Y = []
+
+    def test_basic_false(self):
+        # test when points are closer than LENGTH1
+        self.X = [0, 1]
+        self.Y = [0, 0]
+        self.PARAMETERS.LENGTH1 = 2
+        self.assertFalse(lic_0(self.PARAMETERS.LENGTH1, len(self.X), self.X, self.Y))
+
+    def test_basic_true(self):
+        # test when points are further than LENGTH1
+        self.X = [0, 3]
+        self.Y = [0, 0]
+        self.PARAMETERS.LENGTH1 = 2
+        self.assertTrue(lic_0(self.PARAMETERS.LENGTH1, len(self.X), self.X, self.Y))
+
+    def test_exact_length(self):
+        # test when points are exactly LENGTH1 apart
+        self.X = [0, 2]
+        self.Y = [0, 0]
+        self.PARAMETERS.LENGTH1 = 2
+        self.assertFalse(lic_0(self.PARAMETERS.LENGTH1, len(self.X), self.X, self.Y))
+
+    def test_diagonal_distance(self):
+        # test with points at diagonal distance
+        self.X = [0, 2]
+        self.Y = [0, 2]
+        self.PARAMETERS.LENGTH1 = 2
+        self.assertTrue(lic_0(self.PARAMETERS.LENGTH1, len(self.X), self.X, self.Y))
+
+    def test_insufficient_points(self):
+        # test with less than 2 points
+        self.X = [0]
+        self.Y = [0]
+        self.PARAMETERS.LENGTH1 = 2
+        self.assertFalse(lic_0(self.PARAMETERS.LENGTH1, len(self.X), self.X, self.Y))
+
+    def test_multiple_points(self):
+        # test with multiple points where only one pair satisfies the condition
+        self.X = [0, 1, 4, 5]
+        self.Y = [0, 0, 0, 0]
+        self.PARAMETERS.LENGTH1 = 2
+        self.assertTrue(lic_0(self.PARAMETERS.LENGTH1, len(self.X), self.X, self.Y))
 
 class Test1(unittest.TestCase):
     def test_1(self):

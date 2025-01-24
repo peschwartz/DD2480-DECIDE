@@ -1,10 +1,16 @@
 # cmv functions go here
 # 15 conditions to be met to create the 15 element CMV vector
 from lib.util import *
+from GLOBAL_VARS import *
 
 
 # LIC 0
-def lic_0(LENGTH1: float):
+def lic_0(LENGTH1: float, NUMPOINTS: int, X: Coordinate, Y: Coordinate):
+    if NUMPOINTS < 2:
+        return False
+    for i in range(NUMPOINTS-1):
+        if distance(X[i], Y[i], X[i+1], Y[i+1]) > LENGTH1:
+            return True
     return False
 
 # LIC 1
