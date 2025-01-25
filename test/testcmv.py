@@ -25,11 +25,34 @@ class TestCMV(unittest.TestCase):
 
     def test_22(self):
         # A set of three points with an angle that should NOT be valid
-        self.assertEqual(lic_2([(-1,1), (0,0), (2,1), ()], math.pi / 2, math.pi), False)
+        self.assertEqual(lic_2([(-1,1), (0,0), (2,1)], math.pi / 2, math.pi), False)
 
     def test_23(self):
         # A set which contain three point that have a valid angle but are not consecutive
         self.assertEqual(lic_2([(-1,1), (0,0), (2,1), (4,2)], math.pi / 2, math.pi), False)
+
+    def test_get_angle_1(self):
+        # Two linearly dependent points
+        self.assertEqual(get_angle((2,1), (0,0), (4,2)), 2 * math.pi)
+
+    def test_get_angle_2(self):
+        # Two linearly dependent points on opposite side of the origin
+        self.assertEqual(get_angle((2,1), (0,0), (-2,-1)), math.pi)
+
+    def test_get_angle_3(self):
+        # Correct angle between two points in the first quadrant
+        angle = get_angle((1/2, math.sqrt(3) / 2), (0,0), (math.sqrt(3) / 2, 1/2))
+        self.assertTrue(0.5 < angle and angle < 0.55)
+
+    def test_get_angle_4(self):
+        # Correct angle when vertex is not at origin
+        angle = get_angle((1/2 + 1, math.sqrt(3) / 2 + 2), (1, 2), (math.sqrt(3) / 2 + 1, 1/2 + 2))
+        self.assertTrue(0.5 < angle and angle < 0.55)
+
+    def test_get_angle_5(self):
+        # Correct angle when vertex is not at origin
+        angle = get_angle((math.sqrt(3) / 2, 1/2), (0,0), (1/2, math.sqrt(3) / 2))
+        self.assertTrue(5.7 < angle and angle < 5.8)
 
     # TESTS FOR LIC 3, etc...
     def test_3(self):
