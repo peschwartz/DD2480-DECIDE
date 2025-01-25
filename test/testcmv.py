@@ -9,8 +9,51 @@ from lib.util import *
 
 class Test0(unittest.TestCase):
 
-    def test_0(self):
-        self.assertEqual(lic_0(PARAMETERS.LENGTH1), False)
+    def setUp(self):
+        self.parameters = PARAMETERS
+        self.points = []
+        self.num_points = 0
+    def test_basic_false(self):
+        # test when points are closer than LENGTH1
+        self.points = [(0, 0), (1, 0)]
+        self.num_points = 2
+        self.parameters.LENGTH1 = 2
+        self.assertFalse(lic_0(self.parameters.LENGTH1, self.points, self.num_points))
+
+    def test_basic_true(self):
+        # test when points are further than LENGTH1
+        self.points = [(0, 0), (3, 0)]
+        self.num_points = 2
+        self.parameters.LENGTH1 = 2
+        self.assertTrue(lic_0(self.parameters.LENGTH1, self.points, self.num_points))
+
+    def test_exact_length(self):
+        # test when points are exactly LENGTH1 apart
+        self.points = [(0, 0), (2, 0)]
+        self.num_points = 2
+        self.parameters.LENGTH1 = 2
+        self.assertFalse(lic_0(self.parameters.LENGTH1, self.points, self.num_points))
+
+    def test_diagonal_distance(self):
+        # test with points at diagonal distance
+        self.points = [(0, 0), (2, 2)]
+        self.num_points = 2
+        self.parameters.LENGTH1 = 2
+        self.assertTrue(lic_0(self.parameters.LENGTH1, self.points, self.num_points))
+
+    def test_insufficient_points(self):
+        # test with less than 2 points
+        self.points = [(0, 0)]
+        self.num_points = 1
+        self.parameters.LENGTH1 = 2
+        self.assertFalse(lic_0(self.parameters.LENGTH1, self.points, self.num_points))
+
+    def test_multiple_points(self):
+        # test with multiple points where only one pair satisfies the condition
+        self.points = [(0, 0), (1, 0), (4, 0), (5, 0)]
+        self.num_points = 4
+        self.parameters.LENGTH1 = 2
+        self.assertTrue(lic_0(self.parameters.LENGTH1, self.points, self.num_points))
 
 class Test1(unittest.TestCase):
     def test_1(self):
