@@ -52,7 +52,7 @@ def lic_6(N_PTS: int, K_PTS: int):
     return False
 
 # LIC 7
-def lic_7(POINTS: list[list[int]], K_PTS: int, LENGTH1: int, NUMPOINTS: int):
+def lic_7(POINTS: list, K_PTS: int, LENGTH1: float, NUMPOINTS: int):
     assert 1 <= K_PTS and K_PTS <= NUMPOINTS - 2
     if NUMPOINTS < 3:
         return False;
