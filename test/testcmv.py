@@ -62,8 +62,15 @@ class Test6(unittest.TestCase):
         self.assertEqual(lic_6(PARAMETERS.N_PTS, PARAMETERS.K_PTS), False)
 
 class Test7(unittest.TestCase):
-    def test_7(self):
-        self.assertEqual(lic_7(PARAMETERS.K_PTS), False)
+    def test_small_k_pts_raise_error(self):
+        with self.assertRaises(AssertionError):
+            lic_7([(0,0), (1,1)], 1, 0, 2)
+
+    def test_invalid_sequence(self):
+        self.assertFalse(lic_7([(-3,4), (-1,-1), (0,0), (1,0), (3,3)], 2, 2, 5))
+
+    def test_valid_sequence(self):
+        self.assertTrue(lic_7([(-3,4), (-1,-1), (2,2), (1,0), (3,3)], 2, 3, 5))
 
 class Test8(unittest.TestCase):
     def test_8(self):
