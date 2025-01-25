@@ -3,6 +3,8 @@ from typing import List
 import math
 # cmv functions go here
 # 15 conditions to be met to create the 15 element CMV vector
+from lib.util import *
+
 
 # LIC 0
 def lic_0(LENGTH1: float):
@@ -38,7 +40,26 @@ def lic_2(POINTS: List[Coordinate], EPSILON: float, PI: float):
     return False
 
 # LIC 3
-def lic_3(AREA1: float):
+def lic_3(AREA1: float, POINTS: list, NUMPOINTS: int):
+    # There exists at least one set of three consecutive data points that are the vertices of 
+    # a triangle with area greater than AREA1.
+
+    # check if AREA1 is greater than 0 and NUMPOINTS >= 3, if not, throw an exception
+    if AREA1 <= 0:
+        raise ValueError("AREA1 must be greater than 0")
+    if NUMPOINTS < 3:
+        raise ValueError("NUMPOINTS must be greater than 3")
+    
+    for point in range(NUMPOINTS-2):
+        x1, y1 = POINTS[point]
+        x2, y2 = POINTS[point+1]
+        x3, y3 = POINTS[point+2]
+        area = triangle_area(x1, y1, x2, y2, x3, y3)
+        if area > AREA1:
+            # print(f"Area: {area} > {AREA1}")
+            # print(f"Points: {x1, y1}, {x2, y2}, {x3, y3}")
+            return True
+
     return False
 
 # LIC 4
