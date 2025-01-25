@@ -1,3 +1,4 @@
+import math
 # cmv functions go here
 # 15 conditions to be met to create the 15 element CMV vector
 from lib.util import *
@@ -51,8 +52,26 @@ def lic_6(N_PTS: int, K_PTS: int):
     return False
 
 # LIC 7
-def lic_7(K_PTS: int):
+def lic_7(POINTS: list[list[int]], K_PTS: int, LENGTH1: int, NUMPOINTS: int):
+    assert 1 <= K_PTS and K_PTS <= NUMPOINTS - 2
+    if NUMPOINTS < 3:
+        return False;
+
+    # Two-dimensional array containing the length from each point to every other point
+    distances = [[math.dist(one, two) for two in POINTS] for one in POINTS]
+
+    for s in range(NUMPOINTS - K_PTS - 1):
+        too_close = False
+        for i in range(s + 1, s + K_PTS + 1):
+            for j in range(s + 1, s + K_PTS + 1):
+                if i != j and distances[i][j] < LENGTH1:
+                    too_close = True
+
+        if not too_close:
+            return True
+
     return False
+
 
 # LIC 8
 def lic_8(A_PTS: int, B_PTS: int):
