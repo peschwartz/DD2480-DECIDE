@@ -85,18 +85,12 @@ class Test3(unittest.TestCase):
         self.assertFalse(lic_3(self.area, self.points, 3)) 
     
     def test_error(self):
-        # should raise a ValueError since the area is 0
-        try:
-            lic_3(0, self.points, self.num_points) 
-        except ValueError as e:
-            self.assertEqual(str(e), "AREA1 must be greater than 0")
+        # should be false since the area is 0
+        self.assertFalse(lic_3(0, self.points, self.num_points))
     
     def test_num_error(self):
-        # should raise a ValueError there are less than 3 points
-        try:
-            lic_3(self.area, self.points, 2)
-        except ValueError as e:
-            self.assertEqual(str(e), "NUMPOINTS must be greater than 3")
+        # should be false since there are less than 3 points
+        self.assertFalse(lic_3(self.area, self.points, 2))
 
 
 class Test4(unittest.TestCase):
@@ -136,32 +130,20 @@ class Test8(unittest.TestCase):
         self.assertFalse(lic_8(self.points, self.num_points, self.a_pts, self.b_pts, 5.0))
 
     def test_a_error(self):
-        # should raise a ValueError since the a_pts is 0
-        try:
-            lic_8(self.points, self.num_points, 0, self.b_pts, self.radius)
-        except ValueError as e:
-            self.assertEqual(str(e), "A_PTS must be greater than 0")
+        # should be false since the a_pts is 0
+        self.assertFalse(lic_8(self.points, self.num_points, 0, self.b_pts, self.radius))
 
     def test_b_error(self):
-        # should raise a ValueError since the b_pts is 0
-        try:
-            lic_8(self.points, self.num_points, self.a_pts, 0, self.radius)
-        except ValueError as e:
-            self.assertEqual(str(e), "B_PTS must be greater than 0")
+        # should be false since the b_pts is 0
+        self.assertFalse(lic_8(self.points, self.num_points, self.a_pts, 0, self.radius))
     
     def test_num_error(self):
-        # should raise a ValueError since a_pts + b_pts is greater than num_points (5) - 3
-        try:
-            lic_8(self.points, self.num_points, 2, 2, self.radius)
-        except ValueError as e:
-            self.assertEqual(str(e), "A_PTS + B_PTS must be less than NUMPOINTS - 3")
+        # should be false since a_pts + b_pts is greater than num_points (5) - 3
+        self.assertFalse(lic_8(self.points, self.num_points, 2, 2, self.radius))
     
     def test_total_num_error(self):
-        # should raise a ValueError since a_pts + b_pts is greater than num_points (5) - 3
-        try:
-            lic_8(self.points, 4, self.a_pts, self.b_pts, self.radius)
-        except ValueError as e:
-            self.assertEqual(str(e), "NUMPOINTS must be greater than 5")
+        # should be false since a_pts + b_pts is greater than num_points (5) - 3
+        self.assertFalse(lic_8(self.points, 4, self.a_pts, self.b_pts, self.radius))
 
 class Test9(unittest.TestCase):
     def test_9(self):
@@ -180,8 +162,53 @@ class Test12(unittest.TestCase):
         self.assertEqual(lic_12(PARAMETERS.LENGTH2), False)
 
 class Test13(unittest.TestCase):
-    def test_13(self):
-        self.assertEqual(lic_13(PARAMETERS.RADIUS2), False)
+    # test the LIC13 function
+    
+    def setUp(self):
+        # set up the variables 
+        self.area = 10
+        self.points = [(1,2), (1,4), (2,2), (2,4), (6,3), (5,5)]
+        self.num_points = 5
+        self.a_pts = 1
+        self.b_pts = 1
+        self.radius1 = 2.0
+        self.radius2 = 4.0
+
+    def test_true(self):
+        # should be true since there are 3 pts that do not fit in radius1 and 3 pts that fit in radius2
+        self.assertTrue(lic_13(self.points, self.num_points, self.a_pts, self.b_pts, self.radius1, self.radius2))
+    
+    def test_more_true(self):
+        # should be true since there are 3 pts that do not fit in radius1 and 3 pts that fit in radius2 from more points
+        self.num_points = 6
+        self.assertTrue(lic_13(self.points, self.num_points, self.a_pts, self.b_pts, self.radius1, self.radius2))
+    
+    def test_false(self):
+        # should be false since all points fit in the radius1 circle
+        self.radius1 = 4.0
+        self.assertFalse(lic_13(self.points, self.num_points, self.a_pts, self.b_pts, self.radius1, self.radius2))
+
+    def test_false2(self):
+        # should be false since all points do not fit in the radius2 circle
+        self.radius2 = 2.0
+        self.assertFalse(lic_13(self.points, self.num_points, self.a_pts, self.b_pts, self.radius1, self.radius2))
+
+    def test_a_error(self):
+        # should be false since the a_pts is 0
+        self.assertFalse(lic_13(self.points, self.num_points, 0, self.b_pts, self.radius1, self.radius2))
+
+    def test_b_error(self):
+        # should be false since the b_pts is 0
+        self.assertFalse(lic_13(self.points, self.num_points, self.a_pts, 0, self.radius1, self.radius2))
+
+    def test_num_error(self):
+        # should be false since the number of points is less than 5
+        self.assertFalse(lic_13(self.points, 4, self.a_pts, self.b_pts, self.radius1, self.radius2))
+
+    def test_total_num_error(self):
+        # should be false since a_pts + b_pts is greater than num_points (5) - 3
+        self.assertFalse(lic_13(self.points, self.num_points, 2, 2, self.radius1, self.radius2))
+    
 
 class Test14(unittest.TestCase):
     def test_14(self):

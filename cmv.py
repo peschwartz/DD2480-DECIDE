@@ -30,9 +30,9 @@ def lic_3(AREA1: float, POINTS: list, NUMPOINTS: int):
 
     # check if AREA1 is greater than 0 and NUMPOINTS >= 3, if not, throw an exception
     if AREA1 <= 0:
-        raise ValueError("AREA1 must be greater than 0")
+        return False
     if NUMPOINTS < 3:
-        raise ValueError("NUMPOINTS must be greater than 3")
+        return False
     
     for point in range(NUMPOINTS-2):
         x1, y1 = POINTS[point]
@@ -73,13 +73,13 @@ def lic_8(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float):
     # A_PTS + B_PTS <= NUMPOINTS - 3
 
     if NUMPOINTS < 5:
-        raise ValueError("NUMPOINTS must be greater than 5")
+        return False
     if A_PTS < 1:
-        raise ValueError("A_PTS must be greater than 0")
+        return False
     if B_PTS < 1:
-        raise ValueError("B_PTS must be greater than 0")
+        return False
     if A_PTS + B_PTS > NUMPOINTS - 3:
-        raise ValueError("A_PTS + B_PTS must be less than NUMPOINTS - 3")
+        return False
     
     for i in range(NUMPOINTS - 2 - A_PTS - B_PTS):
         p1 = POINTS[i]
@@ -107,7 +107,41 @@ def lic_12(LENGTH2: float):
     return False
 
 # LIC 13
-def lic_13(RADIUS2: float):
+def lic_13(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float, RADIUS2: float):
+    # There exists at least one set of three data points, separated by exactly A PTS and B PTS
+    # consecutive intervening points, respectively, that cannot be contained within or on a 
+    # circle of radius RADIUS1. In addition, there exists at least one set of three data points 
+    # (which can be the same or different from the three data points just mentioned) separated 
+    # by exactly A PTS and B PTS consecutive intervening points, respectively, that can be 
+    # contained in or on a circle of radius RADIUS2. Both parts must be true for the LIC to be 
+    # true. The condition is not met when NUMPOINTS < 5.
+
+    if NUMPOINTS < 5:
+        return False
+    if A_PTS < 1:
+        return False
+    if B_PTS < 1:
+        return False
+    if A_PTS + B_PTS > NUMPOINTS - 3:
+        return False
+    
+    check = [False, False]
+
+    # check if there exists 3 pts that CANNOT be contained within a circle of radius1
+    check[0] = lic_8(POINTS, NUMPOINTS, A_PTS, B_PTS, RADIUS1)
+    
+    # check there exists 3 pts that CAN be contained within a circle of radius2
+    for i in range(NUMPOINTS - 2 - A_PTS - B_PTS):
+        p1 = POINTS[i]
+        p2 = POINTS[i + A_PTS + 1]
+        p3 = POINTS[i + A_PTS + B_PTS + 2]
+        if fit_in_circle(p1, p2, p3, RADIUS2):
+            check[1] = True
+        
+    # check that both conditions were met
+    if check[0] and check[1]:
+        return True
+    
     return False
 
 # LIC 14
