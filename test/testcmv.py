@@ -56,8 +56,35 @@ class Test0(unittest.TestCase):
         self.assertTrue(lic_0(self.parameters.LENGTH1, self.points, self.num_points))
 
 class Test1(unittest.TestCase):
-    def test_1(self):
-        self.assertEqual(lic_1(PARAMETERS.RADIUS1), False)
+    # test the lic_1 function
+
+    def setUp(self):
+        # Set up the variables
+        self.parameters = PARAMETERS
+        self.parameters.RADIUS1 = 1.0
+        self.points = []
+        self.num_points = 0
+
+    def test_1_true(self):
+        # Expect True when any triple of consecutive points doesn't fit in RADIUS1
+        self.points = [(0,0), (1,0), (2,2), (3,2)]
+        self.num_points = 4
+        self.parameters.RADIUS1 = 0.5
+        self.assertTrue(lic_1(self.parameters.RADIUS1, self.points, self.num_points))
+
+    def test_1_false(self):
+        # Expect False when all triples of consecutive points fit in RADIUS1
+        self.points = [(0,0), (1,0), (2,0)]
+        self.num_points = 3
+        self.parameters.RADIUS1 = 2.0
+        self.assertFalse(lic_1(self.parameters.RADIUS1, self.points, self.num_points))
+
+    def test_1_insufficient_points(self):
+        # Expect False when fewer than 3 points (no triple possible)
+        self.points = [(0,0), (1,1)]
+        self.num_points = 2
+        self.parameters.RADIUS1 = 5.0
+        self.assertFalse(lic_1(self.parameters.RADIUS1, self.points, self.num_points))
 
 class Test2(unittest.TestCase):
     def test_2(self):
