@@ -16,7 +16,37 @@ def lic_0(LENGTH1: float, POINTS: list, NUMPOINTS: int):
     return False
 
 # LIC 1
-def lic_1(RADIUS1: float):
+def lic_1(RADIUS1: float, POINTS: list, NUMPOINTS: int):
+    # Return false if there are not enough points
+    if NUMPOINTS < 3:
+        return False
+    # Iterating over our triplets of points
+    for i in range(NUMPOINTS - 2):
+        x1, y1 = POINTS[i]
+        x2, y2 = POINTS[i + 1]
+        x3, y3 = POINTS[i + 2]
+
+        # Calculate triangle area
+        area = triangle_area(x1, y1, x2, y2, x3, y3)
+        # Check for collinearity
+        if abs(area) < 1e-9:
+            # calulate all pairwise distances
+            d1 = distance(x1, y1, x2, y2)
+            d2 = distance(x2, y2, x3, y3)
+            d3 = distance(x1, y1, x3, y3)
+            max_d = max(d1, d2, d3)
+            # Diameter based radius 
+            min_circle_radius = max_d / 2.0
+        else:
+            a = distance(x1, y1, x2, y2)
+            b = distance(x2, y2, x3, y3)
+            c = distance(x1, y1, x3, y3)
+            # Circumcircle formula 
+            min_circle_radius = (a * b * c) / (4.0 * area)
+
+        if min_circle_radius > RADIUS1:
+            return True
+
     return False
 
 # LIC 2
