@@ -2,11 +2,18 @@
 # cmv functions go here
 # 15 conditions to be met to create the 15 element CMV vector
 from typing import List
-
 from lib.util import *
+from GLOBAL_VARS import *
 
 # LIC 0
-def lic_0(LENGTH1: float):
+def lic_0(LENGTH1: float, POINTS: list, NUMPOINTS: int):
+    if NUMPOINTS < 2:
+        return False
+    for i in range(NUMPOINTS-1):
+        x1, y1 = POINTS[i]
+        x2, y2 = POINTS[i+1]
+        if distance(x1, y1, x2, y2) > LENGTH1:
+            return True
     return False
 
 # LIC 1
@@ -69,7 +76,31 @@ def lic_7(K_PTS: int):
     return False
 
 # LIC 8
-def lic_8(A_PTS: int, B_PTS: int):
+def lic_8(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float):
+    # there exists at least one set of 3 data points separated by exactly 
+    # A_PTS and B_PTS consecutive intervening points, respectively, that cannot 
+    # be contained within or on a circle of radius RADIUS1. 
+    # 
+    # The condition is not met when NUMPOINTS < 5. 
+    # 1 <= A_PTS, 1 <=B_PTS
+    # A_PTS + B_PTS <= NUMPOINTS - 3
+
+    if NUMPOINTS < 5:
+        raise ValueError("NUMPOINTS must be greater than 5")
+    if A_PTS < 1:
+        raise ValueError("A_PTS must be greater than 0")
+    if B_PTS < 1:
+        raise ValueError("B_PTS must be greater than 0")
+    if A_PTS + B_PTS > NUMPOINTS - 3:
+        raise ValueError("A_PTS + B_PTS must be less than NUMPOINTS - 3")
+    
+    for i in range(NUMPOINTS - 2 - A_PTS - B_PTS):
+        p1 = POINTS[i]
+        p2 = POINTS[i + A_PTS + 1]
+        p3 = POINTS[i + A_PTS + B_PTS + 2]
+        if not fit_in_circle(p1, p2, p3, RADIUS1):
+            return True
+    
     return False
 
 # LIC 9
