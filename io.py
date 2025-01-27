@@ -1,25 +1,29 @@
 from collections import deque
+import re
 import sys
 import GLOBAL_VARS as gv
 
+
 def parse_input(queue : deque):
     # NUMPOINTS
-    gv.NUMPOINTS = int(queue.popleft())
+    line = queue.popleft()
+    gv.NUMPOINTS = int(line)
 
     # POINTS
     gv.POINTS = []
     for _ in range(gv.NUMPOINTS):
-        x, y = map(int, queue.popleft().split())
+        line = queue.popleft()
+        x, y = map(int, line.split())
         gv.POINTS.append((x,y))
 
     # PARAMETERS
-    gv.PARAMETERS.LENGTH1 = int(queue.popleft())
-    gv.PARAMETERS.RADIUS1 = int(queue.popleft())
-    gv.PARAMETERS.EPSILON = int(queue.popleft())
-    gv.PARAMETERS.AREA1 = int(queue.popleft())
+    gv.PARAMETERS.LENGTH1 = float(queue.popleft())
+    gv.PARAMETERS.RADIUS1 = float(queue.popleft())
+    gv.PARAMETERS.EPSILON = float(queue.popleft())
+    gv.PARAMETERS.AREA1 = float(queue.popleft())
     gv.PARAMETERS.Q_PTS = int(queue.popleft())
     gv.PARAMETERS.QUADS = int(queue.popleft())
-    gv.PARAMETERS.DIST = int(queue.popleft())
+    gv.PARAMETERS.DIST = float(queue.popleft())
     gv.PARAMETERS.N_PTS = int(queue.popleft())
     gv.PARAMETERS.K_PTS = int(queue.popleft())
     gv.PARAMETERS.A_PTS = int(queue.popleft())
@@ -29,52 +33,64 @@ def parse_input(queue : deque):
     gv.PARAMETERS.E_PTS = int(queue.popleft())
     gv.PARAMETERS.F_PTS = int(queue.popleft())
     gv.PARAMETERS.G_PTS = int(queue.popleft())
-    gv.PARAMETERS.LENGTH2 = int(queue.popleft())
-    gv.PARAMETERS.RADIUS2 = int(queue.popleft())
-    gv.PARAMETERS.AREA2 = int(queue.popleft())
+    gv.PARAMETERS.LENGTH2 = float(queue.popleft())
+    gv.PARAMETERS.RADIUS2 = float(queue.popleft())
+    gv.PARAMETERS.AREA2 = float(queue.popleft())
 
     # LCM
-    for j in range(15):
-        row = queue.popleft().replace('\n','').split()
+    for j in range(gv.LIC_COUNT):
+        row = queue.popleft().split()
+        if len(row) != gv.LIC_COUNT:
+            raise ValueError
+
         gv.LCM.append([])
-        for i in range(15):
+        for i in range(gv.LIC_COUNT):
             atom = row[i]
 
-            if atom == "ANDD":
+            if re.fullmatch("ANDD", atom):
                 gv.LCM[j].append(gv.Connectors.ANDD)
-            elif atom == "ORR":
+            elif re.fullmatch("ORR", atom):
                 gv.LCM[j].append(gv.Connectors.ORR)
-            elif atom == "NOTUSED":
+            elif re.fullmatch("NOTUSED", atom):
                 gv.LCM[j].append(gv.Connectors.NOTUSED)
             else:
                 raise ValueError
 
     # PUV
-    row = queue.popleft().replace('\n','').split()
-    for i in range(15):
+    row = queue.popleft().split()
+    if len(row) != gv.LIC_COUNT:
+        raise ValueError
 
-        if row[i] == "TRUE":
+    for i in range(gv.LIC_COUNT):
+
+        if re.fullmatch("TRUE", row[i]):
             gv.FUV.append(True)
-        elif row[i] == "FALSE":
+        elif re.fullmatch("FALSE", row[i]):
             gv.FUV.append(False)
         else:
             raise ValueError
+
+    # Make sure all input is parsed
+    if len(queue) > 0:
+        raise ValueError
 
 
 def read_input():
     if len(sys.argv) != 2:
         print("Usage: python3 decide.py input_file")
+        return -1
 
     file = sys.argv[1]
-    
+
     try: 
         with open(file) as f:
             lines = f.readlines()
 
-        assert len(lines) < 1000 # might move to global variable
-        # filter ount comments and empty lines
-        lines = filter( 
-            lambda x : len(x) > 0 and x[0] != '#' and x[0] != '\n', 
+        # Seems safe to check input length, maybe unnecessary?
+        assert len(lines) < gv.INPUT_LINE_MAX
+        # filter out comments, empty lines and remove newline characters
+        lines = filter(
+            lambda x : len( x.strip() ) > 0 and x[0] != '#', 
             map(
                 lambda x : x.replace('\n', ''), 
                 lines
@@ -82,13 +98,15 @@ def read_input():
         )
         parse_input(deque(lines))
     except OSError:
-        print("Error: file not found")
-    except UnboundLocalError:
-        print("Error: Failed reading any data")
+        print("Error: failed to open file")
+        return -1
+    except (ValueError, IndexError):
+        print("Error: invalid input")
+        return -1
 
-    gv.test_values()
 
     return 0
 
 if __name__ == "__main__":
-    read_input()
+    if read_input() == 0:
+        gv.test_values()

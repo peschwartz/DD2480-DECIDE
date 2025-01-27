@@ -3,6 +3,8 @@ from typing import List, Tuple
 
 # Constants
 PI = 3.141592653589793
+LIC_COUNT = 15
+INPUT_LINE_MAX = 1000
 
 # Enums
 class Connectors(Enum):
