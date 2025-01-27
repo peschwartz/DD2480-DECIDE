@@ -132,7 +132,22 @@ def lic_9(C_PTS: int, D_PTS: int):
     return False
 
 # LIC 10
-def lic_10(E_PTS: int, F_PTS: int):
+def lic_10(E_PTS: int, F_PTS: int, AREA1: float, POINTS: list, NUMPOINTS: int):
+    if E_PTS < 1 or F_PTS < 1:
+        return False
+    if E_PTS + F_PTS > NUMPOINTS - 3:
+        return False
+    if NUMPOINTS < 5:
+        return False
+
+    # iterating through valid triplets
+    for i in range(NUMPOINTS - E_PTS - F_PTS - 2):
+        point1 = POINTS[i]
+        point2 = POINTS[i + E_PTS + 1]
+        point3 = POINTS[i + E_PTS + F_PTS + 2]
+        area = triangle_area(point1[0], point1[1], point2[0], point2[1], point3[0], point3[1])
+        if area > AREA1:
+            return True
     return False
 
 # LIC 11
