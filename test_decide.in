@@ -1,11 +1,11 @@
 # TEST INPUT FOR DECIDE(). 
-# LINES STARTING WITH # WILL BE IGNORED
+# Lines starting with # will be ignored. Read input line by line.
 #
-# NUMPOINTS:    The number of planar data points.
-# POINTS:       Array containing the coordinates of data points.
-# PARAMETERS:   Struct holding parameters for LIC’s (see below).
-# LCM:          Logical Connector Matrix.
-# PUV:          Preliminary Unlocking Vector.
+#   NUMPOINTS:    The number of planar data points.
+#   POINTS:       Array containing the coordinates of data points.
+#   PARAMETERS:   Struct holding parameters for LIC’s (see below).
+#   LCM:          Logical Connector Matrix.
+#   PUV:          Preliminary Unlocking Vector.
 
 
 # NUM POINTS
@@ -24,28 +24,46 @@
 
 # PARAMETERS
 #   double LENGTH1
+1
 #   double RADIUS1
+1
 #   double EPSILON
+1
 #   double AREA1
+1
 #   int Q_PTS
+1
 #   int QUADS
+1
 #   double DIST
+1
 #   int N_PTS
+1
 #   int K_PTS
+1
 #   int A_PTS
+1
 #   int B_PTS
+1
 #   int C_PTS
+1
 #   int D_PTS
+1
 #   int E_PTS
+1
 #   int F_PTS
+1
 #   int G_PTS
+1
 #   double LENGTH2
+1
 #   double RADIUS2
+1
 #   double AREA2
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1
 
-# LCM
-#   15 x 15 matrix (ANDD, ORR, NOTUSED)
+
+# LCM - 15 x 15 matrix (ANDD, ORR, NOTUSED)
 ANDD ANDD ORR ANDD NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED
 ANDD ANDD ORR ORR NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED
 ORR ORR ANDD ANDD NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED
@@ -62,6 +80,5 @@ NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED 
 NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED
 NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED NOTUSED
 
-# PUV
-#   15 vector (TRUE, FALSE)
+# PUV - 15 vector (TRUE, FALSE)
 TRUE TRUE TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE 
