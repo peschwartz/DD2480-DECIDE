@@ -247,8 +247,15 @@ class Test6(unittest.TestCase):
         )
 
 class Test7(unittest.TestCase):
-    def test_7(self):
-        self.assertEqual(lic_7(PARAMETERS.K_PTS), False)
+    def test_negative_length2_raise_error(self):
+        with self.assertRaises(AssertionError):
+            lic_7([(3,3),(0,0)], 0, 3, 2)
+
+    def test_invalid_sequence_length1_to_short(self):
+        self.assertFalse(lic_7([(-3,4), (-1,-1), (0,0), (-4,3), (-1,0)], 2, 2, 5))
+
+    def test_valid_sequence(self):
+        self.assertTrue(lic_7([(-3,4), (-1,-1), (0,0), (1,0), (1,1)], 2, 3, 5))
 
 class Test8(unittest.TestCase):
     # test the LIC8 function

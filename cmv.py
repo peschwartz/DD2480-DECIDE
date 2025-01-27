@@ -1,4 +1,4 @@
-
+import math
 # cmv functions go here
 # 15 conditions to be met to create the 15 element CMV vector
 from typing import List
@@ -141,8 +141,18 @@ def lic_6(N_PTS: int, DIST: float, POINTS: list, NUMPOINTS: int) -> bool:
 
 
 # LIC 7
-def lic_7(K_PTS: int):
+def lic_7(POINTS: list, K_PTS: int, LENGTH1: float, NUMPOINTS: int):
+    assert 1 <= K_PTS and K_PTS <= NUMPOINTS - 2
+    if NUMPOINTS < 3:
+        return False;
+
+    for s in range(NUMPOINTS - K_PTS - 1):
+        distance = math.dist(POINTS[s], POINTS[s + K_PTS + 1]) 
+        if distance > LENGTH1:
+            return True
+
     return False
+
 
 # LIC 8
 def lic_8(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float):
