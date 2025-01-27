@@ -1,8 +1,9 @@
+
 # cmv functions go here
 # 15 conditions to be met to create the 15 element CMV vector
+from typing import List
 from lib.util import *
 from GLOBAL_VARS import *
-
 
 # LIC 0
 def lic_0(LENGTH1: float, POINTS: list, NUMPOINTS: int):
@@ -50,7 +51,19 @@ def lic_1(RADIUS1: float, POINTS: list, NUMPOINTS: int):
     return False
 
 # LIC 2
-def lic_2(EPSILON: float):
+def lic_2(POINTS: List[Coordinate], EPSILON: float, PI: float):
+    assert 0 <= EPSILON and EPSILON < PI
+    min_angle = PI - EPSILON
+    max_angle = PI + EPSILON
+    for fst, snd, trd in zip(POINTS, POINTS[1:], POINTS[2:]):
+        # If either the first point or the last point (or both) coincides with the vertex, the angle is undefined and the LIC is not satisfied by those three points
+        if fst == snd or trd == snd:
+            continue;
+
+        angle = get_angle(fst, snd, trd)
+        if angle < min_angle or max_angle < angle:
+            return True
+
     return False
 
 # LIC 3

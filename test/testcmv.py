@@ -86,13 +86,48 @@ class Test1(unittest.TestCase):
         self.parameters.RADIUS1 = 5.0
         self.assertFalse(lic_1(self.parameters.RADIUS1, self.points, self.num_points))
 
-class Test2(unittest.TestCase):
-    def test_2(self):
-        self.assertEqual(lic_2(PARAMETERS.EPSILON), False)
+    # TESTS FOR LIC 2
+    def test_20(self):
+        # Point 1 and/or 2 coincides
+        self.assertEqual(lic_2([(1,0), (0,2), (0,2)], 2, math.pi), False)
+
+    def test_21(self):
+        # A set of three points with an angle that should be valid
+        self.assertEqual(lic_2([(2,0), (0,0), (1,1)], math.pi / 2, math.pi), True)
+
+    def test_22(self):
+        # A set of three points with an angle that should NOT be valid
+        self.assertEqual(lic_2([(-1,1), (0,0), (2,1)], math.pi / 2, math.pi), False)
+
+    def test_23(self):
+        # A set which contain three point that have a valid angle but are not consecutive
+        self.assertEqual(lic_2([(-1,1), (0,0), (2,1), (4,2)], math.pi / 2, math.pi), False)
+
+    def test_get_angle_1(self):
+        # Two linearly dependent points
+        self.assertEqual(get_angle((2,1), (0,0), (4,2)), 2 * math.pi)
+
+    def test_get_angle_2(self):
+        # Two linearly dependent points on opposite side of the origin
+        self.assertEqual(get_angle((2,1), (0,0), (-2,-1)), math.pi)
+
+    def test_get_angle_3(self):
+        # Correct angle between two points in the first quadrant
+        angle = get_angle((1/2, math.sqrt(3) / 2), (0,0), (math.sqrt(3) / 2, 1/2))
+        self.assertTrue(0.5 < angle and angle < 0.55)
+
+    def test_get_angle_4(self):
+        # Correct angle when vertex is not at origin
+        angle = get_angle((1/2 + 1, math.sqrt(3) / 2 + 2), (1, 2), (math.sqrt(3) / 2 + 1, 1/2 + 2))
+        self.assertTrue(0.5 < angle and angle < 0.55)
+
+    def test_get_angle_5(self):
+        # Correct angle when vertex is not at origin
+        angle = get_angle((math.sqrt(3) / 2, 1/2), (0,0), (1/2, math.sqrt(3) / 2))
+        self.assertTrue(5.7 < angle and angle < 5.8)
 
 class Test3(unittest.TestCase):
     # test the lic_3 function
-
     def setUp(self):
         # set up the variables 
         self.area = 10
