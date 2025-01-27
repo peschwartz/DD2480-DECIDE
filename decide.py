@@ -25,5 +25,9 @@ def decide():
     # calculate FUV
 
     # calculate LAUNCH
+    LAUNCH = compute_launch(FUV)
 
-    pass
+    return LAUNCH
+
+def compute_launch(FUV: List[bool]) -> bool:
+    return all(FUV)
