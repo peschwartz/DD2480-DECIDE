@@ -8,18 +8,25 @@ def DOUBLECOMPARE(a: float, b: float) -> CompType:
         return CompType.EQ
     return CompType.LT if a < b else CompType.GT
 
-PARAMETERS = Parameters()
-POINTS = [(0,1), (1,0)] # Array of the coordinates of data points
-NUMPOINTS = 2  # Number of data points, between 2 and 100
-LCM = [[None] * 15] * 15   # Logical Connector Matrix
-PUM = [[None] * 15] * 15 # Preliminary Unlocking Matrix
-CMV = [None] * 15    # Conditions Met Vector
-FUV = [None] * 15    # Final Unlocking Vector
-LAUNCH: bool = False          # Decision: Launch or No Launch
-
-def decide():
+def decide(NUMPOINTS, POINTS, PARAMETERS, LCM, PUV):
     # call the cmv functions
-    CMV = cmv.calculate_cmv()
+    CMV[0] = cmv.lic_0(PARAMETERS.LENGTH1, POINTS, NUMPOINTS)
+    CMV[1] = cmv.lic_1(PARAMETERS.RADIUS1)
+    CMV[2] = cmv.lic_2(PARAMETERS.EPSILON)
+    CMV[3] = cmv.lic_3(PARAMETERS.AREA1, POINTS, NUMPOINTS)
+    CMV[4] = cmv.lic_4(PARAMETERS.Q_PTS, PARAMETERS.QUADS)
+    CMV[5] = cmv.lic_5(PARAMETERS.DIST)
+    CMV[6] = cmv.lic_6(PARAMETERS.N_PTS, PARAMETERS.K_PTS)
+    CMV[7] = cmv.lic_7(PARAMETERS.K_PTS)
+    CMV[8] = cmv.lic_8(POINTS, NUMPOINTS, PARAMETERS.A_PTS, PARAMETERS.B_PTS, PARAMETERS.RADIUS1)
+    CMV[9] = cmv.lic_9(PARAMETERS.C_PTS, PARAMETERS.D_PTS)
+    CMV[10] = cmv.lic_10(PARAMETERS.E_PTS, PARAMETERS.F_PTS)
+    CMV[11] = cmv.lic_11(PARAMETERS.G_PTS)
+    CMV[12] = cmv.lic_12(PARAMETERS.LENGTH2)
+    CMV[13] = cmv.lic_13(PARAMETERS.RADIUS2)
+    CMV[14] = cmv.lic_14(PARAMETERS.AREA2)
+
+    print(CMV)
     # calculate PUM
 
     # calculate FUV
@@ -27,3 +34,5 @@ def decide():
     # calculate LAUNCH
 
     pass
+
+decide(NUMPOINTS, POINTS, PARAMETERS, LCM, PUV)
