@@ -57,17 +57,9 @@ def lic_7(POINTS: list, K_PTS: int, LENGTH1: float, NUMPOINTS: int):
     if NUMPOINTS < 3:
         return False;
 
-    # Two-dimensional array containing the length from each point to every other point
-    distances = [[math.dist(one, two) for two in POINTS] for one in POINTS]
-
     for s in range(NUMPOINTS - K_PTS - 1):
-        too_close = False
-        for i in range(s + 1, s + K_PTS + 1):
-            for j in range(s + 1, s + K_PTS + 1):
-                if i != j and distances[i][j] < LENGTH1:
-                    too_close = True
-
-        if not too_close:
+        distance = math.dist(POINTS[s], POINTS[s + K_PTS + 1]) 
+        if distance > LENGTH1:
             return True
 
     return False
