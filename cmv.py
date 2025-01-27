@@ -206,7 +206,14 @@ def lic_10(E_PTS: int, F_PTS: int, AREA1: float, POINTS: list, NUMPOINTS: int):
     return False
 
 # LIC 11
-def lic_11(G_PTS: int):
+def lic_11(G_PTS: int, POINTS: list, NUMPOINTS: int) -> bool:
+    if NUMPOINTS < 3:
+        return False
+    for i in range(NUMPOINTS - G_PTS - 1):
+        j = i + G_PTS + 1
+        if POINTS[j][0] - POINTS[i][0] < 0:
+            return True
+
     return False
 
 # LIC 12
