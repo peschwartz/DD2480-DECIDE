@@ -191,8 +191,38 @@ class Test8(unittest.TestCase):
             self.assertEqual(str(e), "NUMPOINTS must be greater than 5")
 
 class Test9(unittest.TestCase):
-    def test_9(self):
-        self.assertEqual(lic_9(PARAMETERS.C_PTS, PARAMETERS.D_PTS), False)
+    def setUp(self):
+        self.points = [(1,0),(2,1),(3,3),(4,4),(6,5)]
+        self.num_points = 5
+        self.c_pts = 1
+        self.d_pts = 1
+
+    def test_correct(self):
+        self.assertEqual(lic_9(self.points, self.num_points,self.c_pts,self.d_pts,PARAMETERS.EPSILON), True)
+
+    def test_incorrect_c_pts(self):
+        self.assertEqual(lic_9(self.points,self.num_points,0,1,PARAMETERS.EPSILON),False)
+    
+    def test_incorrect_d_pts(self):
+        self.assertEqual(lic_9(self.points,self.num_points,1,0,PARAMETERS.EPSILON),False)
+       
+    def test_incorrect_num_points(self):
+        self.assertEqual(lic_9(self.points,4,self.c_pts,self.d_pts,PARAMETERS.EPSILON),False)
+        
+    def test_incorrect_sum(self):
+        self.assertEqual(lic_9(self.points,self.num_points,4,7,PARAMETERS.EPSILON),False)
+    
+    def test_coincident(self):
+        self.points = [(1,0),(2,1),(2,0),(4,4),(1,0)]
+        self.assertEqual(lic_9(self.points,self.num_points,self.c_pts,self.d_pts,PARAMETERS.EPSILON),False)
+    
+    def test_less_than_min_angle(self):
+        self.points = [(1,0),(2,1),(3,3),(4,4),(2,-6)]
+        self.assertEqual(lic_9(self.points,self.num_points,self.c_pts,self.d_pts,1.0),True)
+
+    def test_greater_than_max_angle(self):
+        self.points = [(100,10),(2,1),(0,0),(4,4),(-8,-9)]
+        self.assertEqual(lic_9(self.points,self.num_points,self.c_pts,self.d_pts,1.0),True)
 
 class Test10(unittest.TestCase):
     def test_10(self):

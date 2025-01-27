@@ -1,5 +1,4 @@
 # util functions go here
-
 # Function to calculate the distance between two points given their x,y coordinates
 def distance(x1, y1, x2, y2):
     return ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
@@ -31,3 +30,4 @@ def fit_in_circle(p1, p2, p3, radius):
             return False
     
     return True
+

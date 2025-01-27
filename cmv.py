@@ -121,7 +121,36 @@ def lic_8(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float):
     return False
 
 # LIC 9
-def lic_9(C_PTS: int, D_PTS: int):
+def lic_9(POINTS: list, NUMPOINTS: int, C_PTS: int, D_PTS: int, EPSILON: float):
+    # There exists at least one set of three data points separated by exactly C_PTS and D_PTS
+    # consecutive intervening points, respectively, that form an angle such that:
+    # angle < (PI−EPSILON) or angle > (PI+EPSILON). The second point of the set of three points is always the vertex of the angle. 
+    # If either the first point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC is not satisfied by those three points. 
+    # When NUMPOINTS < 5, the condition is not met. 1 ≤ C_PTS, 1 ≤ D_PTS C_PTS + D_PTS ≤ NUMPOINTS−3
+
+    if NUMPOINTS < 5:
+        return False
+    if C_PTS < 1:
+        return False
+    if D_PTS < 1:
+        return False
+    if C_PTS + D_PTS > NUMPOINTS - 3:
+        return False
+    
+    for i in range(NUMPOINTS - 2 - C_PTS - D_PTS):
+        p1 = POINTS[i]
+        p2 = POINTS[i + C_PTS + 1]
+        p3 = POINTS[i + C_PTS + D_PTS + 2]
+        
+    # Angle is undifined if any of the points coincide with the vertex
+        if p1 == p2 or p1 == p3 or p2 == p3:
+            return False
+        else:
+            angle = get_angle(p1,p2,p3)
+            if angle < PI-EPSILON or angle > PI+EPSILON:
+                return True
+            else:
+                return False
     return False
 
 # LIC 10
