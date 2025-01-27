@@ -196,12 +196,64 @@ class Test5(unittest.TestCase):
         self.assertFalse(lic_5(self.points, self.num_points))
 
 class Test6(unittest.TestCase):
-    def test_6(self):
-        self.assertEqual(lic_6(PARAMETERS.N_PTS, PARAMETERS.K_PTS), False)
+    def setUp(self):
+        self.parameters = PARAMETERS
+        self.parameters.N_PTS = 3
+        self.parameters.DIST = 1.0
+        self.points = [(0,0), (1,0), (2,0), (2,2), (3,2)]
+        self.num_points = len(self.points)
+
+    def test_6_true(self):
+        self.points = [(0,0), (1,0), (2,0), (2,6), (3,5)]
+        self.num_points = len(self.points)
+        self.assertTrue(
+            lic_6(self.parameters.N_PTS, 
+                  self.parameters.DIST, 
+                  self.points, 
+                  self.num_points)
+        )
+
+    def test_6_false(self):
+        self.parameters.DIST = 5.0
+        self.assertFalse(
+            lic_6(self.parameters.N_PTS, 
+                  self.parameters.DIST, 
+                  self.points, 
+                  self.num_points)
+        )
+
+    def test_6_too_few_points(self):
+        fewer_points = [(0,0), (1,1)]
+        self.assertFalse(
+            lic_6(self.parameters.N_PTS, 
+                  self.parameters.DIST, 
+                  fewer_points, 
+                  len(fewer_points))
+        )
+
+    def test_6_identical_endpoints_true(self):
+        pts = [(0,0), (1,1), (0,0)]
+        self.assertTrue(
+            lic_6(3, 0.5, pts, len(pts))
+        )
+
+    def test_6_identical_endpoints_false(self):
+        pts = [(1,1), (1,1), (1,1)]
+        self.assertFalse(
+            lic_6(3, 0.5, pts, len(pts))
+        )
+
 
 class Test7(unittest.TestCase):
-    def test_7(self):
-        self.assertEqual(lic_7(PARAMETERS.K_PTS), False)
+    def test_negative_length2_raise_error(self):
+        with self.assertRaises(AssertionError):
+            lic_7([(3,3),(0,0)], 0, 3, 2)
+
+    def test_invalid_sequence_length1_to_short(self):
+        self.assertFalse(lic_7([(-3,4), (-1,-1), (0,0), (-4,3), (-1,0)], 2, 2, 5))
+
+    def test_valid_sequence(self):
+        self.assertTrue(lic_7([(-3,4), (-1,-1), (0,0), (1,0), (1,1)], 2, 3, 5))
 
 class Test8(unittest.TestCase):
     # test the LIC8 function
@@ -318,8 +370,35 @@ class Test10(unittest.TestCase):
         self.assertFalse(lic_10(self.e_pts, self.f_pts, self.area, self.points, self.num_points))
 
 class Test11(unittest.TestCase):
-    def test_11(self):
-        self.assertEqual(lic_11(PARAMETERS.G_PTS), False)
+    def setUp(self):
+        self.parameters = PARAMETERS
+        self.parameters.G_PTS = 1
+        self.points = [(0,0), (1,0), (2,0), (1,0)]
+        self.num_points = len(self.points)
+
+    def test_11_true(self):
+        # let's modify points so we do get a negative
+        self.points = [(2,0), (3,0), (1,0)]
+        self.num_points = 3
+        self.assertTrue(
+            lic_11(self.parameters.G_PTS, self.points, self.num_points)
+        )
+
+    def test_11_false(self):
+        # test when no pair has X[j]<X[i]
+        self.points = [(0,0), (1,1), (2,2), (5,0)]
+        self.num_points = 4
+        # All x-coords are increasing or same, so should be False
+        self.assertFalse(
+            lic_11(self.parameters.G_PTS, self.points, self.num_points)
+        )
+
+    def test_11_too_few_points(self):
+        # test with fewer than 3 points
+        few_points = [(1,0), (2,0)]
+        self.assertFalse(
+            lic_11(self.parameters.G_PTS, few_points, len(few_points))
+        )
 
 class Test12(unittest.TestCase):
     def test_12(self):
