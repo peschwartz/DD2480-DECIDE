@@ -175,11 +175,11 @@ class Test7(unittest.TestCase):
         with self.assertRaises(AssertionError):
             lic_7([(3,3),(0,0)], 0, 3, 2)
 
-    def test_invalid_sequence_length1_to_long(self):
-        self.assertFalse(lic_7([(-3,4), (-1,-1), (0,0), (1,0), (1,1)], 2, 3, 5))
+    def test_invalid_sequence_length1_to_short(self):
+        self.assertFalse(lic_7([(-3,4), (-1,-1), (0,0), (-4,3), (-1,0)], 2, 2, 5))
 
     def test_valid_sequence(self):
-        self.assertTrue(lic_7([(-3,4), (-1,-1), (0,0), (1,0), (1,1)], 2, 2, 5))
+        self.assertTrue(lic_7([(-3,4), (-1,-1), (0,0), (1,0), (1,1)], 2, 3, 5))
 
 class Test8(unittest.TestCase):
     # test the LIC8 function
