@@ -53,3 +53,16 @@ PUM: BMatrix = []   # Preliminary Unlocking Matrix
 CMV: Vector = []   # Conditions Met Vector
 FUV: Vector = []    # Final Unlocking Vector
 LAUNCH: bool = False          # Decision: Launch or No Launch
+
+def test_values():
+    print("Parameters: {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, ".format(PARAMETERS.LENGTH1, PARAMETERS.RADIUS1, PARAMETERS.EPSILON, PARAMETERS.AREA1, PARAMETERS.Q_PTS, PARAMETERS.QUADS, PARAMETERS.DIST, PARAMETERS.N_PTS, PARAMETERS.K_PTS, PARAMETERS.A_PTS, PARAMETERS.B_PTS, PARAMETERS.C_PTS, PARAMETERS.D_PTS, PARAMETERS.E_PTS, PARAMETERS.F_PTS, PARAMETERS.G_PTS, PARAMETERS.LENGTH2, PARAMETERS.RADIUS2, PARAMETERS.AREA2))
+
+    print("Numpoints: {}".format(NUMPOINTS))
+    print("Points ({}): {}".format(len(POINTS),POINTS))
+    
+    print("LCM {}".format(len(LCM)))
+    for i in range(15):
+        print(len(LCM[i]))
+        print(LCM[i])
+
+    print("FUV ({}): {}".format(len(FUV), FUV))
