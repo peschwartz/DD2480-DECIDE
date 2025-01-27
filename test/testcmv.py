@@ -121,8 +121,35 @@ class Test10(unittest.TestCase):
         self.assertEqual(lic_10(PARAMETERS.E_PTS, PARAMETERS.F_PTS), False)
 
 class Test11(unittest.TestCase):
-    def test_11(self):
-        self.assertEqual(lic_11(PARAMETERS.G_PTS), False)
+    def setUp(self):
+        self.parameters = PARAMETERS
+        self.parameters.G_PTS = 1
+        self.points = [(0,0), (1,0), (2,0), (1,0)]
+        self.num_points = len(self.points)
+
+    def test_11_true(self):
+        # let's modify points so we do get a negative
+        self.points = [(2,0), (3,0), (1,0)]
+        self.num_points = 3
+        self.assertTrue(
+            lic_11(self.parameters.G_PTS, self.points, self.num_points)
+        )
+
+    def test_11_false(self):
+        # test when no pair has X[j]<X[i]
+        self.points = [(0,0), (1,1), (2,2), (5,0)]
+        self.num_points = 4
+        # All x-coords are increasing or same, so should be False
+        self.assertFalse(
+            lic_11(self.parameters.G_PTS, self.points, self.num_points)
+        )
+
+    def test_11_too_few_points(self):
+        # test with fewer than 3 points
+        few_points = [(1,0), (2,0)]
+        self.assertFalse(
+            lic_11(self.parameters.G_PTS, few_points, len(few_points))
+        )
 
 class Test12(unittest.TestCase):
     def test_12(self):
