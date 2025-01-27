@@ -164,13 +164,13 @@ def lic_9(POINTS: list, NUMPOINTS: int, C_PTS: int, D_PTS: int, EPSILON: float):
         
     # Angle is undifined if any of the points coincide with the vertex
         if p1 == p2 or p1 == p3 or p2 == p3:
-            break
+            continue
         else:
             angle = get_angle(p1,p2,p3)
             if angle < PI-EPSILON or angle > PI+EPSILON:
                 return True
             else:
-                break
+                continue
     return False
 
 # LIC 10
