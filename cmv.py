@@ -81,7 +81,14 @@ def lic_4(Q_PTS: int, QUADS: int):
     return False
 
 # LIC 5
-def lic_5(DIST: float):
+def lic_5(POINTS: list, NUMPOINTS: int):
+    # There exists at least one set of two consecutive data points where the second X coordinate 
+    # is less than the first X coordinate.
+    for point in range(NUMPOINTS-1):
+        x1, _ = POINTS[point]
+        x2, _ = POINTS[point+1]
+        if x2 < x1:
+            return True
     return False
 
 # LIC 6
