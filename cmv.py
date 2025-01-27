@@ -105,8 +105,40 @@ def lic_5(POINTS: list, NUMPOINTS: int):
     return False
 
 # LIC 6
-def lic_6(N_PTS: int, K_PTS: int):
+def lic_6(N_PTS: int, DIST: float, POINTS: list, NUMPOINTS: int) -> bool:
+    # Condition not meet when fewer then 3 points
+    if NUMPOINTS < 3:
+        return False
+    # Iterate over every consecutive block of size N_PTS
+    for start_idx in range(NUMPOINTS - N_PTS + 1):
+        # First and last points of the block
+        x1, y1 = POINTS[start_idx]
+        x2, y2 = POINTS[start_idx + N_PTS - 1]
+        # Check if the first and last points are the same
+        same_endpoints = (abs(x1 - x2) < 1e-9 and abs(y1 - y2) < 1e-9)
+        # Pre-calc line length if not coincident
+        if not same_endpoints:
+            line_len = distance(x1, y1, x2, y2)
+        # Now examine every point in this block
+        for j in range(start_idx, start_idx + N_PTS):
+            px, py = POINTS[j]
+            # If endpoints coincide, measure distance from that single point
+            if same_endpoints:
+                d = distance(x1, y1, px, py)
+            else:
+                # If line is extremely short, fallback to point-to-point distance
+                if line_len < 1e-9:
+                    d = distance(x1, y1, px, py)
+                else:
+                    # Standard perpendicular distance formula using cross product
+                    cross = abs((x2 - x1)*(y1 - py) - (y2 - y1)*(x1 - px))
+                    d = cross / line_len
+            # If any point is too far, condition is satisfied => True
+            if d > DIST:
+                return True
     return False
+
+
 
 # LIC 7
 def lic_7(K_PTS: int):
