@@ -200,11 +200,12 @@ class Test6(unittest.TestCase):
         self.parameters = PARAMETERS
         self.parameters.N_PTS = 3
         self.parameters.DIST = 1.0
-        self.points = [(0,0), (1,0), (2,0), (2,1), (3,1)]
+        self.points = [(0,0), (1,0), (2,0), (2,2), (3,2)]
         self.num_points = len(self.points)
 
     def test_6_true(self):
-        # test when at least one point is out of range
+        self.points = [(0,0), (1,0), (2,0), (2,6), (3,5)]
+        self.num_points = len(self.points)
         self.assertTrue(
             lic_6(self.parameters.N_PTS, 
                   self.parameters.DIST, 
@@ -213,7 +214,6 @@ class Test6(unittest.TestCase):
         )
 
     def test_6_false(self):
-        # test when no points are out of range
         self.parameters.DIST = 5.0
         self.assertFalse(
             lic_6(self.parameters.N_PTS, 
@@ -223,7 +223,6 @@ class Test6(unittest.TestCase):
         )
 
     def test_6_too_few_points(self):
-        # test with fewer than 3 points
         fewer_points = [(0,0), (1,1)]
         self.assertFalse(
             lic_6(self.parameters.N_PTS, 
@@ -233,18 +232,17 @@ class Test6(unittest.TestCase):
         )
 
     def test_6_identical_endpoints_true(self):
-        # test identical endpoints => point out of range
-        pts = [(0,0), (0,0), (1,1)]
+        pts = [(0,0), (1,1), (0,0)]
         self.assertTrue(
             lic_6(3, 0.5, pts, len(pts))
         )
 
     def test_6_identical_endpoints_false(self):
-        # test identical endpoints => no point out of range
         pts = [(1,1), (1,1), (1,1)]
         self.assertFalse(
             lic_6(3, 0.5, pts, len(pts))
         )
+
 
 class Test7(unittest.TestCase):
     def test_7(self):
