@@ -166,7 +166,6 @@ def lic_6(N_PTS: int, DIST: float, POINTS: list, NUMPOINTS: int) -> bool:
 
 # LIC 7
 def lic_7(POINTS: list, K_PTS: int, LENGTH1: float, NUMPOINTS: int):
-    assert 1 <= K_PTS and K_PTS <= NUMPOINTS - 2
     if NUMPOINTS < 3:
         return False
 
@@ -272,7 +271,6 @@ def lic_11(G_PTS: int, POINTS: list, NUMPOINTS: int) -> bool:
 
 # LIC 12
 def lic_12(POINTS: list, K_PTS: int, LENGTH1: float, LENGTH2: float, NUMPOINTS: int):
-    assert 0 <= LENGTH2
     if NUMPOINTS < 3:
         return False
 

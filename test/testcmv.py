@@ -8,7 +8,7 @@ from GLOBAL_VARS import *
 from lib.util import *
 
 class Test0(unittest.TestCase):
-
+    # test the LIC 0 function
     def setUp(self):
         self.parameters = PARAMETERS
         self.points = []
@@ -56,7 +56,7 @@ class Test0(unittest.TestCase):
         self.assertTrue(lic_0(self.parameters.LENGTH1, self.points, self.num_points))
 
 class Test1(unittest.TestCase):
-    # test the lic_1 function
+    # test the LIC 1 function
 
     def setUp(self):
         # Set up the variables
@@ -127,7 +127,7 @@ class Test1(unittest.TestCase):
         self.assertTrue(5.7 < angle and angle < 5.8)
 
 class Test3(unittest.TestCase):
-    # test the lic_3 function
+    # test the LIC 3 function
     def setUp(self):
         # set up the variables 
         self.area = 10
@@ -156,6 +156,7 @@ class Test3(unittest.TestCase):
 
 
 class Test4(unittest.TestCase):
+    # test the LIC 4 function
     def setUp(self):
         self.points = [(-1,-1),(0,0),(1,1)]
         self.num_points = 3
@@ -204,6 +205,7 @@ class Test4(unittest.TestCase):
 
 
 class Test5(unittest.TestCase):
+    # test the LIC 5 function
     def setUp(self):
         # reset points before each test
         self.points = []
@@ -240,6 +242,7 @@ class Test5(unittest.TestCase):
         self.assertFalse(lic_5(self.points, self.num_points))
 
 class Test6(unittest.TestCase):
+    # test the LIC 6 function
     def setUp(self):
         self.parameters = PARAMETERS
         self.parameters.N_PTS = 3
@@ -289,19 +292,21 @@ class Test6(unittest.TestCase):
 
 
 class Test7(unittest.TestCase):
-    def test_negative_length2_raise_error(self):
-        with self.assertRaises(AssertionError):
-            lic_7([(3,3),(0,0)], 0, 3, 2)
+    # test the LIC 7 function
+    def test_valid_minimum_sequence(self):
+        # should be true since distance is 3 is greater than LENGTH1
+        self.assertTrue(lic_7([(0,0),(1,0),(2,0),(3,0)],2,2,4))
 
     def test_invalid_sequence_length1_to_short(self):
+        # should be false since the distance between both (-1,-1) and (-1,0), respectively (-3,4) and (-4,3) is less than 2
         self.assertFalse(lic_7([(-3,4), (-1,-1), (0,0), (-4,3), (-1,0)], 2, 2, 5))
 
     def test_valid_sequence(self):
+        # should be true since the distance between (-3,4) and (1,0) is greater than 3
         self.assertTrue(lic_7([(-3,4), (-1,-1), (0,0), (1,0), (1,1)], 2, 3, 5))
 
 class Test8(unittest.TestCase):
-    # test the LIC8 function
-
+    # test the LIC 8 function
     def setUp(self):
         # set up the variables 
         self.area = 10
@@ -345,28 +350,29 @@ class Test9(unittest.TestCase):
         self.d_pts = 1
 
     def test_correct(self):
-        self.assertEqual(lic_9(self.points, self.num_points,self.c_pts,self.d_pts,PARAMETERS.EPSILON), True)
+        # should be correct since the angle is within the range
+        self.assertEqual(lic_9(self.points, self.num_points,self.c_pts,self.d_pts,1), True)
 
     def test_incorrect_c_pts(self):
         # should be false since C_PTS < 1
-        self.assertEqual(lic_9(self.points,self.num_points,0,1,PARAMETERS.EPSILON),False)
+        self.assertEqual(lic_9(self.points,self.num_points,0,1,1),False)
     
     def test_incorrect_d_pts(self):
         # should be false since D_PTS < 1
-        self.assertEqual(lic_9(self.points,self.num_points,1,0,PARAMETERS.EPSILON),False)
+        self.assertEqual(lic_9(self.points,self.num_points,1,0,1),False)
        
     def test_incorrect_num_points(self):
         # should be false since NUMPOINTS < 5
-        self.assertEqual(lic_9(self.points,4,self.c_pts,self.d_pts,PARAMETERS.EPSILON),False)
+        self.assertEqual(lic_9(self.points,4,self.c_pts,self.d_pts,1),False)
         
     def test_incorrect_sum(self):
         # should be false since C_PTS + D_PTS > NUMPOINTS - 3
-        self.assertEqual(lic_9(self.points,self.num_points,4,7,PARAMETERS.EPSILON),False)
+        self.assertEqual(lic_9(self.points,self.num_points,4,7,1),False)
     
     def test_coincident(self):
         # should be false since a triangle only can be created with 3 non-coincident points
         self.points = [(1,0),(1,1),(2,0),(2,2),(1,0)]
-        self.assertEqual(lic_9(self.points,self.num_points,self.c_pts,self.d_pts,PARAMETERS.EPSILON),False)
+        self.assertEqual(lic_9(self.points,self.num_points,self.c_pts,self.d_pts,1),False)
     
     def test_less_than_min_angle(self):
         # should be true since the angle is less than the min angle
@@ -384,6 +390,7 @@ class Test9(unittest.TestCase):
         self.assertEqual(lic_9(self.points,self.num_points,self.c_pts,self.d_pts,1.0),False) 
 
 class Test10(unittest.TestCase):
+    # test the LIC 10 function
     def test_valid_triangle(self):
         # points at indices 0, 2, 4 form a triangle with area > 10
         self.points = [(0,0), (1,1), (10,10), (5,0), (0,10)]
@@ -414,6 +421,7 @@ class Test10(unittest.TestCase):
         self.assertFalse(lic_10(self.e_pts, self.f_pts, self.area, self.points, self.num_points))
 
 class Test11(unittest.TestCase):
+    # test the LIC 11 function
     def setUp(self):
         self.parameters = PARAMETERS
         self.parameters.G_PTS = 1
@@ -445,22 +453,25 @@ class Test11(unittest.TestCase):
         )
 
 class Test12(unittest.TestCase):
-    def test_negative_length2_raise_error(self):
-        with self.assertRaises(AssertionError):
-            lic_12([(3,3),(0,0)], 0, 3, -1, 2)
+    # test the LIC 12 function
+    def test_valid_min_sequence(self):
+        # should be true since the distance between (0,0) and (2,0) is greater than 1 but less than 2
+        self.assertTrue(lic_12([(0,0), (1,0), (2,0)],1,1,3,3))
 
     def test_invalid_sequence_length1_to_long(self):
+        # should be false since the distance between the two pairs of points are greater than LENGTH1
         self.assertFalse(lic_12([(-3,4), (-1,-1), (0,0), (1,0), (1,1)], 2, 6, 3, 5))
 
     def test_invalid_sequence_length2_to_short(self):
+        # should be false since both of the two pairs of points are separated by a distance greater than LENGTH2
         self.assertFalse(lic_12([(-3,4), (-1,-1), (0,0), (1,0), (1,1)], 2, 5, 2, 5))
 
     def test_valid_sequence(self):
+        # should be true since since the second pair of points are separated by a distance less than LENGTH2
         self.assertTrue(lic_12([(-3,4), (-1,-1), (0,0), (1,0), (1,1)], 2, 5, 3, 5))
 
 class Test13(unittest.TestCase):
-    # test the LIC13 function
-    
+    # test the LIC 13 function
     def setUp(self):
         # set up the variables 
         self.area = 10
@@ -524,7 +535,7 @@ class Test14(unittest.TestCase):
         self.assertEqual(lic_14(self.points,self.num_points,self.e_pts,self.f_pts,self.area1, self.area2),False)
 
     def test_area2(self):
-        # should be false since area 2 < 0
+        # should be false since AREA2 < 0
         self.area2 = -2.0
         self.assertEqual(lic_14(self.points,self.num_points,self.e_pts,self.f_pts,self.area1, self.area2),False)
     
