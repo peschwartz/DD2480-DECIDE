@@ -6,9 +6,9 @@ PI = 3.141592653589793
 
 # Enums
 class Connectors(Enum):
-    NOTUSED = 0
-    ORR = 1
-    ANDD = 2
+    NOTUSED = 777
+    ORR = 778
+    ANDD = 789
 
 class CompType(Enum):
     LT = 1111
