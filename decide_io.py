@@ -1,14 +1,15 @@
+import GLOBAL_VARS as gv
 from collections import deque
 import re
 import sys
-import GLOBAL_VARS as gv
 
 
 def parse_input(queue : deque):
     # NUMPOINTS
     line = queue.popleft()
+    print(gv.NUMPOINTS)
     gv.NUMPOINTS = int(line)
-
+    print(gv.NUMPOINTS)
     # POINTS
     gv.POINTS = []
     for _ in range(gv.NUMPOINTS):
@@ -113,9 +114,6 @@ def parse_input(queue : deque):
 
 
 def read_input(file):
-    # if len(sys.argv) != 2:
-    #     print("Usage: python3 decide.py input_file")
-    #     return -1
 
     try: 
         with open(file) as f:
