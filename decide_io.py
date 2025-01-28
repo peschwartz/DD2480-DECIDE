@@ -129,9 +129,7 @@ def read_input(file):
             )
         )
         parse_input(deque(lines))
-        # print("After parse_input:")
-        # print(f"NUMPOINTS: {gv.NUMPOINTS}")
-        # print(f"POINTS: {gv.POINTS}")
+        
     except OSError:
         print("Error: failed to open file.")
         return -1
