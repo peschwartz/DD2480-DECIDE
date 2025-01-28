@@ -357,8 +357,18 @@ class Test11(unittest.TestCase):
         )
 
 class Test12(unittest.TestCase):
-    def test_12(self):
-        self.assertEqual(lic_12(PARAMETERS.LENGTH2), False)
+    def test_negative_length2_raise_error(self):
+        with self.assertRaises(AssertionError):
+            lic_12([(3,3),(0,0)], 0, 3, -1, 2)
+
+    def test_invalid_sequence_length1_to_long(self):
+        self.assertFalse(lic_12([(-3,4), (-1,-1), (0,0), (1,0), (1,1)], 2, 6, 3, 5))
+
+    def test_invalid_sequence_length2_to_short(self):
+        self.assertFalse(lic_12([(-3,4), (-1,-1), (0,0), (1,0), (1,1)], 2, 5, 2, 5))
+
+    def test_valid_sequence(self):
+        self.assertTrue(lic_12([(-3,4), (-1,-1), (0,0), (1,0), (1,1)], 2, 5, 3, 5))
 
 class Test13(unittest.TestCase):
     # test the LIC13 function

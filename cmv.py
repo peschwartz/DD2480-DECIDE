@@ -217,8 +217,22 @@ def lic_11(G_PTS: int, POINTS: list, NUMPOINTS: int) -> bool:
     return False
 
 # LIC 12
-def lic_12(LENGTH2: float):
-    return False
+def lic_12(POINTS: list, K_PTS: int, LENGTH1: float, LENGTH2: float, NUMPOINTS: int):
+    assert 0 <= LENGTH2
+    if NUMPOINTS < 3:
+        return False;
+
+    length1_condition = False
+    length2_condition = False
+    for s in range(NUMPOINTS - K_PTS - 1):
+        distance = math.dist(POINTS[s], POINTS[s + K_PTS + 1]) 
+        if distance > LENGTH1:
+            length1_condition = True
+
+        if distance < LENGTH2:
+            length2_condition = True
+
+    return length1_condition and length2_condition
 
 # LIC 13
 def lic_13(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float, RADIUS2: float):
