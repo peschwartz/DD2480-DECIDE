@@ -5,6 +5,7 @@ import fuv
 from launch import *
 from decide_io import *
 
+
 # from the headerfile in the description
 def DOUBLECOMPARE(a: float, b: float) -> CompType:
     """Compares floating point numbers"""
