@@ -166,7 +166,6 @@ def lic_6(N_PTS: int, DIST: float, POINTS: list, NUMPOINTS: int) -> bool:
 
 # LIC 7
 def lic_7(POINTS: list, K_PTS: int, LENGTH1: float, NUMPOINTS: int):
-    assert 1 <= K_PTS and K_PTS <= NUMPOINTS - 2
     if NUMPOINTS < 3:
         return False
 
@@ -234,11 +233,13 @@ def lic_9(POINTS: list, NUMPOINTS: int, C_PTS: int, D_PTS: int, EPSILON: float):
             continue
         else:
             angle = get_angle(p1,p2,p3)
+            print(angle)
             if angle < PI-EPSILON or angle > PI+EPSILON:
                 return True
             else:
                 continue
     return False
+lic_9([(1,0),(1,2),(3,3),(1,4),(6,5)], 5, 1, 1, 1)
 
 # LIC 10
 def lic_10(E_PTS: int, F_PTS: int, AREA1: float, POINTS: list, NUMPOINTS: int):
@@ -272,7 +273,6 @@ def lic_11(G_PTS: int, POINTS: list, NUMPOINTS: int) -> bool:
 
 # LIC 12
 def lic_12(POINTS: list, K_PTS: int, LENGTH1: float, LENGTH2: float, NUMPOINTS: int):
-    assert 0 <= LENGTH2
     if NUMPOINTS < 3:
         return False
 
