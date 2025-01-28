@@ -90,8 +90,32 @@ def lic_3(AREA1: float, POINTS: list, NUMPOINTS: int):
     return False
 
 # LIC 4
-def lic_4(Q_PTS: int, QUADS: int):
+def lic_4(POINTS: int, NUMPOINTS: int, Q_PTS: int, QUADS: int):
+    # There exists at least one set of Q_PTS consecutive data points that lie in more than QUADS
+    # quadrants. Where there is ambiguity as to which quadrant contains a given point, priority
+    # of decision will be by quadrant number, i.e., I, II, III, IV. For example, the data point (0,0)
+    # is in quadrant I, the point (-l,0) is in quadrant II, the point (0,-l) is in quadrant III, the point
+    # (0,1) is in quadrant I and the point (1,0) is in quadrant I.
+    # (2 ≤ Q_PTS ≤ NUMPOINTS), (1 ≤ QUADS ≤ 3)
+
+    if QUADS > 3 or QUADS < 1:
+        return False
+    if Q_PTS < 2 or Q_PTS > NUMPOINTS:
+        return False
+    
+    # mapping coordinates to points
+    quads = [quadrants(x,y) for x,y in POINTS]
+    for i in range(NUMPOINTS-Q_PTS+1):
+        # Extracting a subset of quads for Q_PTS consecutive points
+        subset_quads = quads[i:i+Q_PTS]
+
+        # Extracting the unique quadrants
+        common_quads = set(subset_quads)
+        if len(common_quads) > QUADS:
+            return True
     return False
+
+
 
 # LIC 5
 def lic_5(POINTS: list, NUMPOINTS: int):
