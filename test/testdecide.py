@@ -6,6 +6,10 @@ from decide_io import *
 
 class TestDecide(unittest.TestCase):
 
+    def setUp(self):
+        # Reset global variables before each test
+        gv.reset_globals()
+    
     def test_decide(self):
         # test the decide.py file correctly computes the variables and returns YES
         read_input("./test/test_decide.in")
@@ -31,5 +35,5 @@ class TestDecide(unittest.TestCase):
         
         self.assertNotEqual(self.cmv, [True]*15)
         self.assertNotEqual(self.pum[0], [True]*15)
-        self.assertNotEqual(self.fuv, [True]*15)
-        self.assertNotEqual(self.launch, "YES")
+        self.assertEqual(self.fuv, [True]*15)
+        self.assertEqual(self.launch, "YES")

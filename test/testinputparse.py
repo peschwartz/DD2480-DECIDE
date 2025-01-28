@@ -5,20 +5,18 @@ from decide_io import *
 
 class TestInputParse(unittest.TestCase):
 
-    @classmethod
-    def setUpClass(cls):
+    def setUp(self):
+        # Reset global variables before each test
+        gv.reset_globals()
         read_input("./test/test_decide.in")
     
     # test the decide_io.py file
     def test_read_input(self):
-        print(gv.NUMPOINTS)
 
         self.assertEqual(gv.NUMPOINTS, 9)
 
         self.assertEqual(gv.PARAMETERS.E_PTS, 1)
 
-        print(gv.LCM)
-        print("WHERe")
         self.assertEqual(len(gv.LCM), 15)
         self.assertEqual(len(gv.LCM[0]), 15)
         
