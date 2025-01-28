@@ -233,13 +233,11 @@ def lic_9(POINTS: list, NUMPOINTS: int, C_PTS: int, D_PTS: int, EPSILON: float):
             continue
         else:
             angle = get_angle(p1,p2,p3)
-            print(angle)
             if angle < PI-EPSILON or angle > PI+EPSILON:
                 return True
             else:
                 continue
     return False
-lic_9([(1,0),(1,2),(3,3),(1,4),(6,5)], 5, 1, 1, 1)
 
 # LIC 10
 def lic_10(E_PTS: int, F_PTS: int, AREA1: float, POINTS: list, NUMPOINTS: int):
