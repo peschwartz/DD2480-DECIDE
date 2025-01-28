@@ -3,6 +3,7 @@ import cmv
 import pum
 import fuv
 from launch import *
+from decide_io import *
 
 # from the headerfile in the description
 def DOUBLECOMPARE(a: float, b: float) -> CompType:
@@ -42,4 +43,12 @@ def decide(NUMPOINTS, POINTS, PARAMETERS, LCM, PUV):
 
     return LAUNCH
 
-print(decide(NUMPOINTS, POINTS, PARAMETERS, LCM, PUV))
+# make a main function to test the decide function
+if __name__ == "__main__":
+    # read input from file
+    read_input("test/test_decide.in")
+    # test values
+    test_values()
+    # call the decide function
+    status = decide(NUMPOINTS, POINTS, PARAMETERS, LCM, PUV)
+    print(status)

@@ -52,7 +52,7 @@ POINTS: List[Coordinate] = []  # Array of the coordinates of data points
 NUMPOINTS: int = 0  # Number of data points
 LCM: CMatrix = []   # Logical Connector Matrix
 PUM: BMatrix = []   # Preliminary Unlocking Matrix
-CMV: Vector = []    # Conditions Met Vector
+CMV: Vector = [None] * 15    # Conditions Met Vector
 PUV: Vector = []    # Preliminary Unlocking Vector
 LAUNCH: bool = False          # Decision: Launch or No Launch
 
