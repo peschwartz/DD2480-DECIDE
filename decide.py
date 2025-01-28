@@ -1,5 +1,10 @@
 from GLOBAL_VARS import *
 import cmv
+import pum
+import fuv
+from launch import *
+from decide_io import *
+from launch import *
 
 # from the headerfile in the description
 def DOUBLECOMPARE(a: float, b: float) -> CompType:
@@ -15,15 +20,18 @@ LCM = [[None] * 15] * 15   # Logical Connector Matrix
 PUM = [[None] * 15] * 15 # Preliminary Unlocking Matrix
 CMV = [None] * 15    # Conditions Met Vector
 FUV = [None] * 15    # Final Unlocking Vector
-LAUNCH: bool = False          # Decision: Launch or No Launch
+LAUNCH: str = "NO"          # Decision: Launch or No Launch
 
-def decide():
+def decide(NUMPOINTS, POINTS, PARAMETERS, LCM, PUV):
     # call the cmv functions
-    CMV = cmv.calculate_cmv()
-    # calculate PUM
+
+    #calculate pum
+    PUM = pum.calculate_pum(LCM, CMV)
 
     # calculate FUV
+    FUV = fuv.compute_fuv_from_pum(PUV, PUM)
 
     # calculate LAUNCH
+    LAUNCH = compute_launch(FUV)
 
-    pass
+    return LAUNCH

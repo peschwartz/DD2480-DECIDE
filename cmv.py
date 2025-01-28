@@ -58,7 +58,7 @@ def lic_2(POINTS: List[Coordinate], EPSILON: float, PI: float):
     for fst, snd, trd in zip(POINTS, POINTS[1:], POINTS[2:]):
         # If either the first point or the last point (or both) coincides with the vertex, the angle is undefined and the LIC is not satisfied by those three points
         if fst == snd or trd == snd:
-            continue;
+            continue
 
         angle = get_angle(fst, snd, trd)
         if angle < min_angle or max_angle < angle:
@@ -144,7 +144,7 @@ def lic_6(N_PTS: int, DIST: float, POINTS: list, NUMPOINTS: int) -> bool:
 def lic_7(POINTS: list, K_PTS: int, LENGTH1: float, NUMPOINTS: int):
     assert 1 <= K_PTS and K_PTS <= NUMPOINTS - 2
     if NUMPOINTS < 3:
-        return False;
+        return False
 
     for s in range(NUMPOINTS - K_PTS - 1):
         distance = math.dist(POINTS[s], POINTS[s + K_PTS + 1]) 
@@ -199,6 +199,7 @@ def lic_9(POINTS: list, NUMPOINTS: int, C_PTS: int, D_PTS: int, EPSILON: float):
     if C_PTS + D_PTS > NUMPOINTS - 3:
         return False
     
+    # iterating through valid triplets
     for i in range(NUMPOINTS - 2 - C_PTS - D_PTS):
         p1 = POINTS[i]
         p2 = POINTS[i + C_PTS + 1]
@@ -249,7 +250,7 @@ def lic_11(G_PTS: int, POINTS: list, NUMPOINTS: int) -> bool:
 def lic_12(POINTS: list, K_PTS: int, LENGTH1: float, LENGTH2: float, NUMPOINTS: int):
     assert 0 <= LENGTH2
     if NUMPOINTS < 3:
-        return False;
+        return False
 
     length1_condition = False
     length2_condition = False
@@ -298,5 +299,40 @@ def lic_13(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float,
     return False
 
 # LIC 14
-def lic_14(AREA2: float):
+def lic_14(POINTS: int, NUMPOINTS: int, E_PTS: int, F_PTS: int, AREA1: float, AREA2: float):
+    # There exists at least one set of three data points, separated by exactly E_PTS and F_PTS consecutive intervening points,
+    # respectively, that are the vertices of a triangle with area greater than AREA1. In addition, there exist three data points (which
+    # can be the same or different from the three data points just mentioned) separated by exactly E_PTS and F_PTS consecutive
+    # intervening points, respectively, that are the vertices of a triangle with area less than AREA2. Both parts must be true for the
+    # LIC to be true.
+
+    # Condition is not met when NUMPOINTS < 5
+    if NUMPOINTS < 5:
+        return False
+    
+    # Condition is not met when AREA2 < 0
+    if AREA2 < 0:
+        return False
+    
+    # check condition
+    check = [False, False]
+    
+    # iterating through valid triplets
+    for i in range(NUMPOINTS - E_PTS - F_PTS - 2):
+        p1 = POINTS[i]
+        p2 = POINTS[i + E_PTS + 1]
+        p3 = POINTS[i + E_PTS + F_PTS + 2]
+
+        # check if there exists a triangle formed by 3 points with greater area than AREA1
+        if triangle_area(p1[0],p1[1],p2[0],p2[1],p3[0],p3[1]) > AREA1:
+            check[0] = True
+        
+        # check if there exists a triangle formed by 3 points with a smaller area than AREA2
+        if triangle_area(p1[0],p1[1],p2[0],p2[1],p3[0],p3[1]) < AREA2:
+            check[1] = True
+
+    # both parts must be true for the LIC to be true
+    if check[0] and check[1]:
+        return True
+    
     return False

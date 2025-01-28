@@ -101,9 +101,9 @@ def parse_input(queue : deque):
     for i in range(gv.LIC_COUNT):
 
         if re.fullmatch("TRUE", row[i]):
-            gv.FUV.append(True)
+            gv.PUV.append(True)
         elif re.fullmatch("FALSE", row[i]):
-            gv.FUV.append(False)
+            gv.PUV.append(False)
         else:
             raise ValueError
 
