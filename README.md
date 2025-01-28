@@ -42,9 +42,13 @@ python -m unittest discover test
   - `util.py`: utility file for calculation functions
 - `test/`: Test files
   - `main.py`: main testing file that calls each of our other testing files
-  - `test_decide.in`: test input for the decide functionalities
+  - `test_decide.in`: input file for the decide functionalities
+  - `test_decide2.in`: input file for the decide functionalities
+  - `test_decide3.in`: input file for the decide functionalities
   - `testcmv.py`: test functions for each of the 15 LICs
+  - `testdecide.py`: test decide functions
   - `testfuv.py`: test function for the FUV vector
+  - `testinputparse.py`: testing the decide_io.py functions
   - `testlaunch.py`: test functions for the LAUNCH decision
   - `testpum.py`: test functions for the PUM matrix
 - `decide.py`: Main program logic
@@ -90,10 +94,14 @@ python -m unittest discover test
 
 [Phoebe ]:
 
-- Implementation of LICs 3, 8, 13, PUM
+- Implementation of LICs 3, 8, 13
 - Testing of LIC3, 8, 13, PUM
-  In this project, I worked on this...
-  As a group, we worked well together and communicated frequently...
+- Implementation of PUM file with calculation function
+- Implementation of PUM testing
+- Implementation of the decide file and functions
+- Implementation of the decide testing
+- 
+As a group, we were very successful with our implementation of the DECIDE framework. Not only did we complete the functions and implement them correctly, we also learned and practiced good software engineering processes. We communicated frequently and met in person often. We set rules for how we wanted to create commits and issues and followed these practices throughout the implementation of our framework.
 
 [Samuel ]:
 
@@ -103,7 +111,7 @@ python -m unittest discover test
 - Implementation of the FUV and launch computation functions
 - Implementation of the FUV and launch tests
 - Initial readme structure
-- Debugging and fixingthe input parsing function
+- Debugging and fixing the input parsing function
 
 ## Way of Working
 
