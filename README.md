@@ -100,7 +100,8 @@ python -m unittest discover test
 - Implementation of PUM testing
 - Implementation of the decide file and functions
 - Implementation of the decide testing
-- 
+-
+
 As a group, we were very successful with our implementation of the DECIDE framework. Not only did we complete the functions and implement them correctly, we also learned and practiced good software engineering processes. We communicated frequently and met in person often. We set rules for how we wanted to create commits and issues and followed these practices throughout the implementation of our framework.
 
 [Samuel ]:
@@ -108,10 +109,9 @@ As a group, we were very successful with our implementation of the DECIDE framew
 - Implementation of LICs 0, 5, 10
 - Testing of LICs 0, 5, 10
 - Setting up initial testing skeletons for CMV and FUV as well as initial global variables
-- Implementation of the FUV and launch computation functions
-- Implementation of the FUV and launch tests
-- Initial readme structure
-- Debugging and fixing the input parsing function
+- Implementation of the FUV and LAUNCH computation functions
+- Implementation of the FUV and LAUNCH tests
+- Debugging and fixing the input parsing function + various bug fixes
 
 ## Way of Working
 
