@@ -112,13 +112,8 @@ def parse_input(queue : deque):
         raise ValueError
 
 
-def read_input():
-    if len(sys.argv) != 2:
-        print("Usage: python3 decide.py input_file")
-        return -1
-
-    file = sys.argv[1]
-
+def read_input(file):
+    
     try: 
         with open(file) as f:
             lines = f.readlines()
