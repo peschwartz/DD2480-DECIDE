@@ -74,7 +74,6 @@ def parse_input(queue : deque):
     gv.PARAMETERS.AREA2 = float(queue.popleft())
     assert 0 <= gv.PARAMETERS.AREA2
 
-
     # LCM
     for j in range(gv.LIC_COUNT):
         row = queue.popleft().split()
