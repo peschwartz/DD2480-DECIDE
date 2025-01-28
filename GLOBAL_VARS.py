@@ -52,9 +52,8 @@ POINTS: List[Coordinate] = []  # Array of the coordinates of data points
 NUMPOINTS: int = 0  # Number of data points
 LCM: CMatrix = []   # Logical Connector Matrix
 PUM: BMatrix = []   # Preliminary Unlocking Matrix
-CMV: Vector = []   # Conditions Met Vector
-PUV: Vector = []   # Preliminary Unlocking Vector
-FUV: Vector = []    # Final Unlocking Vector
+CMV: Vector = []    # Conditions Met Vector
+PUV: Vector = []    # Preliminary Unlocking Vector
 LAUNCH: bool = False          # Decision: Launch or No Launch
 
 def test_values():
@@ -68,4 +67,4 @@ def test_values():
         print(len(LCM[i]))
         print(LCM[i])
 
-    print("FUV ({}): {}".format(len(FUV), FUV))
+    print("PUV ({}): {}".format(len(PUV), PUV))
