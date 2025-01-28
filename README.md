@@ -28,12 +28,6 @@ python -m venv .venv
 .venv\Scripts\activate
 ```
 
-3. Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
 ## Running Tests
 
 Tests are written using Python's unittest framework. To run all tests:
@@ -44,10 +38,23 @@ python -m unittest discover test
 
 ## Project Structure
 
-- `decide.py`: Main program logic
 - `lib/`: Helper functions and utilities
+  - `util.py`: utility file for calculation functions 
 - `test/`: Test files
-  - One unit test per LIC (Launch Interceptor Condition)
+  - `main.py`: main testing file that calls each of our other testing files
+  - `test_decide.in`: test input for the decide functionalities
+  -  `testcmv.py`: test functions for each of the 15 LICs
+  -  `testfuv.py`: test function for the FUV vector
+  -  `testlaunch.py`: test functions for the LAUNCH decision
+  -  `testpum.py`: test functions for the PUM matrix
+- `decide.py`: Main program logic
+- `GLOBAL_VARS.py`: set up global variables available throughout all files
+- `cmv.py`: file for calculating the CMV, includes functions for each of the 15 LICs
+- `decide_io.py`: file to read and write input for the decide functionalities
+- `framework.pdf`: pdf for the description of the decide functionalities
+- `fuv.py`: file to calculate the FUV vector
+- `launch.py`: file to calculate the launch string
+- `pum.py`: file to calculate the PUM matrix
 
 ## Development Guidelines
 
@@ -56,20 +63,42 @@ python -m unittest discover test
   - Have a clear commit message with appropriate prefix (feat, fix, doc, refactor)
   - Include or modify relevant tests
   - Be linked to an issue (for tracking)
+- Commenting Guidelines
+  - Every file should have a comment describing what it does
+  - Every function should have a comment describing what it does (even test functions)
+  - Throughout functions, there should be comments to help follow the code
+- Testing Guidelines
+  - Functions should be tested accurately with both positive and negative assertions
+  - New features should be tested extensively to ensure correctness
 
 ## Statement of Contributions
 
-[Team Member 1]:
+[Carl ]:
 
 - Implementation of ...
 - Testing of ...
 
-[Team Member 2]:
+[Jacob ]:
 
 - Implementation of ...
 - Testing of ...
 
-[Continue for each team member]
+[Klara ]:
+
+- Implementation of ...
+- Testing of ...
+
+[Phoebe ]:
+
+- Implementation of LICs 3, 8, 13, PUM
+- Testing of LIC3, 8, 13, PUM
+In this project, I worked on this...
+As a group, we worked well together and communicated frequently...
+
+[Samuel ]:
+
+- Implementation of ...
+- Testing of ...
 
 ## Way of Working
 
