@@ -19,5 +19,5 @@ def calculate_pum(lcm, cmv):
             # if LCM[i,j] is ORR, then PUM[i,j] is True if CMV[i] or CMV[j] are True
             elif lcm[i][j] == Connectors.ORR:
                 pum[i][j] = cmv[i] or cmv[j]
-
+                
     return pum

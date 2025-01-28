@@ -1,7 +1,7 @@
+import GLOBAL_VARS as gv
 from collections import deque
 import re
 import sys
-import GLOBAL_VARS as gv
 
 
 def parse_input(queue : deque):
@@ -113,7 +113,7 @@ def parse_input(queue : deque):
 
 
 def read_input(file):
-    
+
     try: 
         with open(file) as f:
             lines = f.readlines()
@@ -129,6 +129,7 @@ def read_input(file):
             )
         )
         parse_input(deque(lines))
+        
     except OSError:
         print("Error: failed to open file.")
         return -1
