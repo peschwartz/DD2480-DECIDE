@@ -41,4 +41,3 @@ def fit_in_circle(p1, p2, p3, radius):
             return False
     
     return True
-

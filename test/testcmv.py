@@ -454,5 +454,48 @@ class Test13(unittest.TestCase):
     
 
 class Test14(unittest.TestCase):
-    def test_14(self):
-        self.assertEqual(lic_14(PARAMETERS.AREA2), False)
+    # test the LIC 14 function
+    def setUp(self):
+        # setup initial variables
+        self.points = [(1,1),(2,2),(3,3),(4,4),(5,5)]
+        self.num_points = 5
+        self.e_pts = 1
+        self.f_pts = 1
+        self.area1 = 1.0
+        self.area2 = 2.0
+    
+    def test_num_points(self):
+        # should be false since NUMPOINTS < 5
+        self.num_points = 4
+        self.assertEqual(lic_14(self.points,self.num_points,self.e_pts,self.f_pts,self.area1, self.area2),False)
+
+    def test_area2(self):
+        # should be false since area 2 < 0
+        self.area2 = -2.0
+        self.assertEqual(lic_14(self.points,self.num_points,self.e_pts,self.f_pts,self.area1, self.area2),False)
+    
+    def test_false(self):
+        # should return false since the points are a linear combination of each other
+        self.assertEqual(lic_14(self.points,self.num_points,self.e_pts,self.f_pts,self.area1, self.area2),False)
+    
+    def test_correct(self):
+        # should return true since these points generate a triangle with an area of 1.5 area units
+        self.points = [(1,2),(2,2),(3,5),(4,4),(4,8)]
+        self.assertTrue(lic_14(self.points,self.num_points,self.e_pts,self.f_pts,self.area1, self.area2))
+    
+    def test_correct_area1_false_area2(self):
+        # testing if the function returns False for an area greater than both AREA1 and AREA2
+        self.points = [(1,2),(2,2),(3,5),(4,4),(4,9)]
+        self.assertFalse(lic_14(self.points,self.num_points,self.e_pts,self.f_pts,self.area1, self.area2))
+
+    def test_larger_points_vec(self):
+        # should return True since the second three points generates a triangle with an area less than AREA2
+        self.points = [(1,2),(2,2),(3,5),(4,4),(4,9),(8,7)]
+        self.num_points = 6
+        self.assertTrue(lic_14(self.points,self.num_points,self.e_pts,self.f_pts,self.area1,self.area2))
+
+    def test_larger_points_vec_first_points(self):
+        # should return true since the condition is met for the first set of points
+        self.points = [(1,2),(2,2),(3,5),(4,4),(4,8),(11,8)]
+        self.num_points = 6
+        self.assertTrue(lic_14(self.points,self.num_points,self.e_pts,self.f_pts,self.area1,self.area2))
