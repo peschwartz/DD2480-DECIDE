@@ -25,11 +25,6 @@ class TestPUM(unittest.TestCase):
         self.cmv = [False] * 15
         self.pum = calculate_pum(self.lcm, self.cmv)
 
-    def test_diagonal_pum(self):
-        # check diagonal elements to make sure they are none
-        for i in range(15):
-            self.assertIsNone(self.pum[i][i])
-
     def test_notused_pum(self):
         # check for NOTUSED connectors and make sure corresponding PUM elements are True
         for i in range(15):

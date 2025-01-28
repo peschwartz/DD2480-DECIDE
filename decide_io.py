@@ -7,9 +7,8 @@ import sys
 def parse_input(queue : deque):
     # NUMPOINTS
     line = queue.popleft()
-    print(gv.NUMPOINTS)
     gv.NUMPOINTS = int(line)
-    print(gv.NUMPOINTS)
+
     # POINTS
     gv.POINTS = []
     for _ in range(gv.NUMPOINTS):
@@ -130,9 +129,9 @@ def read_input(file):
             )
         )
         parse_input(deque(lines))
-        print("After parse_input:")
-        print(f"NUMPOINTS: {gv.NUMPOINTS}")
-        print(f"POINTS: {gv.POINTS}")
+        # print("After parse_input:")
+        # print(f"NUMPOINTS: {gv.NUMPOINTS}")
+        # print(f"POINTS: {gv.POINTS}")
     except OSError:
         print("Error: failed to open file.")
         return -1

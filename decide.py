@@ -78,6 +78,6 @@ if __name__ == "__main__":
     CMV, PUM, FUV, LAUNCH = decide()
     
     # print the final values
-    final_values()
+    # final_values()
 
     print(LAUNCH)
