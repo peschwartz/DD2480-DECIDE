@@ -1,8 +1,9 @@
+import math
 # cmv functions go here
 # 15 conditions to be met to create the 15 element CMV vector
+from typing import List
 from lib.util import *
 from GLOBAL_VARS import *
-
 
 # LIC 0
 def lic_0(LENGTH1: float, POINTS: list, NUMPOINTS: int):
@@ -50,7 +51,19 @@ def lic_1(RADIUS1: float, POINTS: list, NUMPOINTS: int):
     return False
 
 # LIC 2
-def lic_2(EPSILON: float):
+def lic_2(POINTS: List[Coordinate], EPSILON: float, PI: float):
+    assert 0 <= EPSILON and EPSILON < PI
+    min_angle = PI - EPSILON
+    max_angle = PI + EPSILON
+    for fst, snd, trd in zip(POINTS, POINTS[1:], POINTS[2:]):
+        # If either the first point or the last point (or both) coincides with the vertex, the angle is undefined and the LIC is not satisfied by those three points
+        if fst == snd or trd == snd:
+            continue;
+
+        angle = get_angle(fst, snd, trd)
+        if angle < min_angle or max_angle < angle:
+            return True
+
     return False
 
 # LIC 3
@@ -92,12 +105,54 @@ def lic_5(POINTS: list, NUMPOINTS: int):
     return False
 
 # LIC 6
-def lic_6(N_PTS: int, K_PTS: int):
+def lic_6(N_PTS: int, DIST: float, POINTS: list, NUMPOINTS: int) -> bool:
+    # Condition not meet when fewer then 3 points
+    if NUMPOINTS < 3:
+        return False
+    # Iterate over every consecutive block of size N_PTS
+    for start_idx in range(NUMPOINTS - N_PTS + 1):
+        # First and last points of the block
+        x1, y1 = POINTS[start_idx]
+        x2, y2 = POINTS[start_idx + N_PTS - 1]
+        # Check if the first and last points are the same
+        same_endpoints = (abs(x1 - x2) < 1e-9 and abs(y1 - y2) < 1e-9)
+        # Pre-calc line length if not coincident
+        if not same_endpoints:
+            line_len = distance(x1, y1, x2, y2)
+        # Now examine every point in this block
+        for j in range(start_idx, start_idx + N_PTS):
+            px, py = POINTS[j]
+            # If endpoints coincide, measure distance from that single point
+            if same_endpoints:
+                d = distance(x1, y1, px, py)
+            else:
+                # If line is extremely short, fallback to point-to-point distance
+                if line_len < 1e-9:
+                    d = distance(x1, y1, px, py)
+                else:
+                    # Standard perpendicular distance formula using cross product
+                    cross = abs((x2 - x1)*(y1 - py) - (y2 - y1)*(x1 - px))
+                    d = cross / line_len
+            # If any point is too far, condition is satisfied => True
+            if d > DIST:
+                return True
     return False
 
+
+
 # LIC 7
-def lic_7(K_PTS: int):
+def lic_7(POINTS: list, K_PTS: int, LENGTH1: float, NUMPOINTS: int):
+    assert 1 <= K_PTS and K_PTS <= NUMPOINTS - 2
+    if NUMPOINTS < 3:
+        return False;
+
+    for s in range(NUMPOINTS - K_PTS - 1):
+        distance = math.dist(POINTS[s], POINTS[s + K_PTS + 1]) 
+        if distance > LENGTH1:
+            return True
+
     return False
+
 
 # LIC 8
 def lic_8(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float):
@@ -128,7 +183,36 @@ def lic_8(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float):
     return False
 
 # LIC 9
-def lic_9(C_PTS: int, D_PTS: int):
+def lic_9(POINTS: list, NUMPOINTS: int, C_PTS: int, D_PTS: int, EPSILON: float):
+    # There exists at least one set of three data points separated by exactly C_PTS and D_PTS
+    # consecutive intervening points, respectively, that form an angle such that:
+    # angle < (PI−EPSILON) or angle > (PI+EPSILON). The second point of the set of three points is always the vertex of the angle. 
+    # If either the first point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC is not satisfied by those three points. 
+    # When NUMPOINTS < 5, the condition is not met. 1 ≤ C_PTS, 1 ≤ D_PTS C_PTS + D_PTS ≤ NUMPOINTS−3
+
+    if NUMPOINTS < 5:
+        return False
+    if C_PTS < 1:
+        return False
+    if D_PTS < 1:
+        return False
+    if C_PTS + D_PTS > NUMPOINTS - 3:
+        return False
+    
+    for i in range(NUMPOINTS - 2 - C_PTS - D_PTS):
+        p1 = POINTS[i]
+        p2 = POINTS[i + C_PTS + 1]
+        p3 = POINTS[i + C_PTS + D_PTS + 2]
+        
+    # Angle is undifined if any of the points coincide with the vertex
+        if p1 == p2 or p1 == p3 or p2 == p3:
+            continue
+        else:
+            angle = get_angle(p1,p2,p3)
+            if angle < PI-EPSILON or angle > PI+EPSILON:
+                return True
+            else:
+                continue
     return False
 
 # LIC 10
@@ -151,12 +235,33 @@ def lic_10(E_PTS: int, F_PTS: int, AREA1: float, POINTS: list, NUMPOINTS: int):
     return False
 
 # LIC 11
-def lic_11(G_PTS: int):
+def lic_11(G_PTS: int, POINTS: list, NUMPOINTS: int) -> bool:
+    if NUMPOINTS < 3:
+        return False
+    for i in range(NUMPOINTS - G_PTS - 1):
+        j = i + G_PTS + 1
+        if POINTS[j][0] - POINTS[i][0] < 0:
+            return True
+
     return False
 
 # LIC 12
-def lic_12(LENGTH2: float):
-    return False
+def lic_12(POINTS: list, K_PTS: int, LENGTH1: float, LENGTH2: float, NUMPOINTS: int):
+    assert 0 <= LENGTH2
+    if NUMPOINTS < 3:
+        return False;
+
+    length1_condition = False
+    length2_condition = False
+    for s in range(NUMPOINTS - K_PTS - 1):
+        distance = math.dist(POINTS[s], POINTS[s + K_PTS + 1]) 
+        if distance > LENGTH1:
+            length1_condition = True
+
+        if distance < LENGTH2:
+            length2_condition = True
+
+    return length1_condition and length2_condition
 
 # LIC 13
 def lic_13(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float, RADIUS2: float):
