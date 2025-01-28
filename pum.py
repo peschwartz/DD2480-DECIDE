@@ -7,8 +7,6 @@ def calculate_pum(lcm, cmv):
 
     for i in range(15):
         for j in range(15): 
-            if i == j:
-                continue
             
             # if LCM[i,j] is NOTUSED, then PUM[i,j] is True
             if lcm[i][j] == Connectors.NOTUSED:
