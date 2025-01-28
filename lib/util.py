@@ -41,3 +41,18 @@ def fit_in_circle(p1, p2, p3, radius):
             return False
     
     return True
+
+# determine what quadrant that the point lies in
+def quadrants(x,y):
+    # assigning the quadrant number to a variable q
+    if x >= 0 and y >= 0:
+        q = 1
+    elif x < 0 and y >= 0:
+        q = 2
+    elif x >= 0 and y < 0:
+        q = 3
+    else:
+        q = 4
+    
+    return q
+
