@@ -156,8 +156,52 @@ class Test3(unittest.TestCase):
 
 
 class Test4(unittest.TestCase):
-    def test_4(self):
-        self.assertEqual(lic_4(PARAMETERS.Q_PTS, PARAMETERS.QUADS), False)
+    def setUp(self):
+        self.points = [(-1,-1),(0,0),(1,1)]
+        self.num_points = 3
+        self.q_pts = 2
+        self.quads = 3
+    
+    def test_quads_upper(self):
+        # should be false since the number of quads are larger than 4
+        self.quads = 4
+        self.assertFalse(lic_4(self.points,self.num_points, self.q_pts, self.quads))
+    
+    def test_quads_lower(self):
+        # should be false since the number of quads are less than 1
+        self.quads = 0
+        self.assertFalse(lic_4(self.points,self.num_points, self.q_pts, self.quads))
+
+    def test_q_pts_lower(self):
+        # should be false since the Q_PTS are less than 2
+        self.q_pts = 1
+        self.assertFalse(lic_4(self.points,self.num_points, self.q_pts, self.quads))
+
+    def test_q_pts_upper(self):
+        # should be false since Q_PTS > NUMPOINTS
+        self.q_pts = 4
+        self.assertFalse(lic_4(self.points,self.num_points, self.q_pts, self.quads))
+
+    def test_false(self):
+        # should be false since the points are distributed over the same amount of quadrants as QUADS
+        self.q_pts = 3
+        self.quads = 2
+        self.assertFalse(lic_4(self.points,self.num_points, self.q_pts, self.quads))
+    
+    def test_correct(self):
+        # should be true since the points lie in more quadrants than QUADS
+        self.points = [(-1,1),(1,1),(1,-1)]
+        self.q_pts = 3
+        self.quads = 2
+        self.assertTrue(lic_4(self.points,self.num_points, self.q_pts, self.quads))
+
+    def test_extended_point_vec(self):
+        # should be true since the set contains Q_PTS consecutive points distributed over more than QUADS
+        self.points = [(-1,1),(1,1),(1,-1),(-2,-1),(2,2)]
+        self.q_pts = 4
+        self.num_points = 5
+        self.assertTrue(lic_4(self.points,self.num_points, self.q_pts, self.quads))
+
 
 class Test5(unittest.TestCase):
     def setUp(self):
