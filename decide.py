@@ -1,5 +1,6 @@
 from GLOBAL_VARS import *
 import cmv
+from launch import *
 
 # from the headerfile in the description
 def DOUBLECOMPARE(a: float, b: float) -> CompType:
@@ -15,7 +16,7 @@ LCM = [[None] * 15] * 15   # Logical Connector Matrix
 PUM = [[None] * 15] * 15 # Preliminary Unlocking Matrix
 CMV = [None] * 15    # Conditions Met Vector
 FUV = [None] * 15    # Final Unlocking Vector
-LAUNCH: bool = False          # Decision: Launch or No Launch
+LAUNCH: str = "NO"          # Decision: Launch or No Launch
 
 def decide():
     # call the cmv functions
@@ -25,5 +26,6 @@ def decide():
     # calculate FUV
 
     # calculate LAUNCH
+    LAUNCH = compute_launch(FUV)
 
-    pass
+    return LAUNCH
