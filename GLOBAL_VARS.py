@@ -8,9 +8,9 @@ INPUT_LINE_MAX = 1000
 
 # Enums
 class Connectors(Enum):
-    NOTUSED = 0
-    ORR = 1
-    ANDD = 2
+    NOTUSED = 777
+    ORR = 778
+    ANDD = 789
 
 class CompType(Enum):
     LT = 1111
@@ -48,13 +48,14 @@ class Parameters:
 
 # Global variables
 PARAMETERS: Parameters = Parameters()
-POINTS: List[Coordinate] = []  # Array of the coordinates of data points
-NUMPOINTS: int = 0  # Number of data points
-LCM: CMatrix = []   # Logical Connector Matrix
-PUM: BMatrix = []   # Preliminary Unlocking Matrix
-CMV: Vector = []    # Conditions Met Vector
-PUV: Vector = []    # Preliminary Unlocking Vector
-LAUNCH: bool = False          # Decision: Launch or No Launch
+POINTS: List[Coordinate] = []      # Array of the coordinates of data points
+NUMPOINTS: int = 0                 # Number of data points
+LCM: CMatrix = [[None for _ in range(15)] for _ in range(15)]   # Logical Connector Matrix
+PUV: Vector = [None] * 15           # Preliminary Unlocking Vector
+PUM: BMatrix = [[None for _ in range(15)] for _ in range(15)] # Preliminary Unlocking Matrix
+CMV: Vector = [False] * 15           # Conditions Met Vector
+PUV: Vector = [None] * 15           # Final Unlocking Vector
+LAUNCH: bool = False                # Decision: Launch or No Launch
 
 def test_values():
     print("Parameters: {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, ".format(PARAMETERS.LENGTH1, PARAMETERS.RADIUS1, PARAMETERS.EPSILON, PARAMETERS.AREA1, PARAMETERS.Q_PTS, PARAMETERS.QUADS, PARAMETERS.DIST, PARAMETERS.N_PTS, PARAMETERS.K_PTS, PARAMETERS.A_PTS, PARAMETERS.B_PTS, PARAMETERS.C_PTS, PARAMETERS.D_PTS, PARAMETERS.E_PTS, PARAMETERS.F_PTS, PARAMETERS.G_PTS, PARAMETERS.LENGTH2, PARAMETERS.RADIUS2, PARAMETERS.AREA2))

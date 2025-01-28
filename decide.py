@@ -22,10 +22,11 @@ CMV = [None] * 15    # Conditions Met Vector
 FUV = [None] * 15    # Final Unlocking Vector
 LAUNCH: str = "NO"          # Decision: Launch or No Launch
 
-def decide():
+def decide(NUMPOINTS, POINTS, PARAMETERS, LCM, PUV):
     # call the cmv functions
-    CMV = cmv.calculate_cmv()
-    # calculate PUM
+
+    #calculate pum
+    PUM = pum.calculate_pum(LCM, CMV)
 
     # calculate FUV
     FUV = fuv.compute_fuv_from_pum(PUV, PUM)
