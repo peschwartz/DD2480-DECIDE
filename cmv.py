@@ -58,7 +58,7 @@ def lic_2(POINTS: List[Coordinate], EPSILON: float, PI: float):
     for fst, snd, trd in zip(POINTS, POINTS[1:], POINTS[2:]):
         # If either the first point or the last point (or both) coincides with the vertex, the angle is undefined and the LIC is not satisfied by those three points
         if fst == snd or trd == snd:
-            continue;
+            continue
 
         angle = get_angle(fst, snd, trd)
         if angle < min_angle or max_angle < angle:
@@ -144,7 +144,7 @@ def lic_6(N_PTS: int, DIST: float, POINTS: list, NUMPOINTS: int) -> bool:
 def lic_7(POINTS: list, K_PTS: int, LENGTH1: float, NUMPOINTS: int):
     assert 1 <= K_PTS and K_PTS <= NUMPOINTS - 2
     if NUMPOINTS < 3:
-        return False;
+        return False
 
     for s in range(NUMPOINTS - K_PTS - 1):
         distance = math.dist(POINTS[s], POINTS[s + K_PTS + 1]) 
@@ -250,7 +250,7 @@ def lic_11(G_PTS: int, POINTS: list, NUMPOINTS: int) -> bool:
 def lic_12(POINTS: list, K_PTS: int, LENGTH1: float, LENGTH2: float, NUMPOINTS: int):
     assert 0 <= LENGTH2
     if NUMPOINTS < 3:
-        return False;
+        return False
 
     length1_condition = False
     length2_condition = False

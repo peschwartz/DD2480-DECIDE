@@ -14,7 +14,6 @@ def DOUBLECOMPARE(a: float, b: float) -> CompType:
 def decide(NUMPOINTS, POINTS, PARAMETERS, LCM, PUV):
     # call the cmv functions, \
     # TODO: need to update the function calls to match the completed cmv file
-    
 
     CMV[0] = cmv.lic_0(PARAMETERS.LENGTH1, POINTS, NUMPOINTS)
     CMV[1] = cmv.lic_1(PARAMETERS.RADIUS1, POINTS, NUMPOINTS)
