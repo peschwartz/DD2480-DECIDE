@@ -17,8 +17,11 @@ class TestInputParse(unittest.TestCase):
 
         self.assertEqual(gv.PARAMETERS.E_PTS, 1)
 
+        print(gv.LCM)
+        print("WHERe")
         self.assertEqual(len(gv.LCM), 15)
         self.assertEqual(len(gv.LCM[0]), 15)
+        
     
         self.assertEqual(gv.LCM[0][0], gv.Connectors.ANDD)
         self.assertEqual(gv.LCM[0][1], gv.Connectors.ANDD)

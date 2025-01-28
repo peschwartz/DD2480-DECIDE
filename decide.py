@@ -46,7 +46,7 @@ def decide():
     CMV[1] = cmv.lic_1(gv.PARAMETERS.RADIUS1, gv.POINTS, gv.NUMPOINTS)
     CMV[2] = cmv.lic_2(gv.POINTS, gv.PARAMETERS.EPSILON, PI)
     CMV[3] = cmv.lic_3(gv.PARAMETERS.AREA1, gv.POINTS, gv.NUMPOINTS)
-    CMV[4] = cmv.lic_4(gv.PARAMETERS.Q_PTS, gv.PARAMETERS.QUADS)
+    CMV[4] = cmv.lic_4(gv.POINTS, gv.NUMPOINTS, gv.PARAMETERS.Q_PTS, gv.PARAMETERS.QUADS)
     CMV[5] = cmv.lic_5(gv.POINTS, gv.NUMPOINTS)
     CMV[6] = cmv.lic_6(gv.PARAMETERS.N_PTS, gv.PARAMETERS.DIST, gv.POINTS, gv.NUMPOINTS)
     CMV[7] = cmv.lic_7(gv.POINTS, gv.PARAMETERS.K_PTS, gv.PARAMETERS.LENGTH1, gv.NUMPOINTS)
