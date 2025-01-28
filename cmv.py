@@ -115,7 +115,6 @@ def lic_4(POINTS: int, NUMPOINTS: int, Q_PTS: int, QUADS: int):
             return True
     return False
 
-lic_4([(-1,-1),(0,0),(-1,1)],3,2,2)
 
 
 # LIC 5
