@@ -2,6 +2,7 @@ from GLOBAL_VARS import *
 import cmv
 import pum
 import fuv
+from launch import *
 
 # from the headerfile in the description
 def DOUBLECOMPARE(a: float, b: float) -> CompType:
@@ -13,6 +14,7 @@ def DOUBLECOMPARE(a: float, b: float) -> CompType:
 def decide(NUMPOINTS, POINTS, PARAMETERS, LCM, PUV):
     # call the cmv functions, \
     # TODO: need to update the function calls to match the completed cmv file
+    
 
     CMV[0] = cmv.lic_0(PARAMETERS.LENGTH1, POINTS, NUMPOINTS)
     CMV[1] = cmv.lic_1(PARAMETERS.RADIUS1, POINTS, NUMPOINTS)
@@ -37,7 +39,8 @@ def decide(NUMPOINTS, POINTS, PARAMETERS, LCM, PUV):
     FUV = fuv.compute_fuv_from_pum(PUV, PUM)
 
     # calculate LAUNCH
+    LAUNCH = compute_launch(FUV)
 
-    return "NO"
+    return LAUNCH
 
-decide(NUMPOINTS, POINTS, PARAMETERS, LCM, PUV)
+print(decide(NUMPOINTS, POINTS, PARAMETERS, LCM, PUV))
