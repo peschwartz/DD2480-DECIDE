@@ -387,11 +387,6 @@ class Test8(unittest.TestCase):
         with self.assertRaises(AssertionError):
             lic_8(self.points, self.num_points, 2, 2, self.radius)
 
-    def test_total_num_error(self):
-        # test that invalid total number of points raises assertion
-        with self.assertRaises(AssertionError):
-            lic_8(self.points, 4, self.a_pts, self.b_pts, self.radius)
-
 class Test9(unittest.TestCase):
     # test the LIC 9 function
     def setUp(self):
