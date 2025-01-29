@@ -1,5 +1,5 @@
 import math
-from GLOBAL_VARS import Coordinate
+import GLOBAL_VARS as gv
 # util functions go here
 # Function to calculate the distance between two points given their x,y coordinates
 def distance(x1, y1, x2, y2):
@@ -12,7 +12,7 @@ def triangle_area(x1, y1, x2, y2, x3, y3):
 # Calculate shortest angle between the three coordinate points fst,snd,trd
 # Angle is measured clockwise between fst and trd where snd is the vertex of the angle.
 # Throws an error if either fst or trd coincides with snd
-def get_angle(fst: Coordinate, snd: Coordinate, trd: Coordinate):
+def get_angle(fst: gv.Coordinate, snd: gv.Coordinate, trd: gv.Coordinate):
     assert fst != snd and trd != snd
     f = lambda x, y : math.atan2(x[1] - y[1], x[0] - y[0])
     angle = f(fst,snd) - f(trd,snd)
@@ -56,3 +56,16 @@ def quadrants(x,y):
     
     return q
 
+# from the headerfile in the description
+def DOUBLECOMPARE(a: float, b: float) -> gv.CompType:
+    """Compares floating point numbers"""
+    if abs(a - b) < 0.000001:
+        return gv.CompType.EQ
+    return gv.CompType.LT if a < b else gv.CompType.GT
+
+def reset_globals():
+    gv.NUMPOINTS = 0
+    gv.POINTS = []
+    gv.PARAMETERS = gv.Parameters()
+    gv.LCM = []
+    gv.PUV = []

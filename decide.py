@@ -31,13 +31,6 @@ def test_values():
 
     print("PUV ({}): {}".format(len(PUV), PUV))
 
-# from the headerfile in the description
-def DOUBLECOMPARE(a: float, b: float) -> CompType:
-    """Compares floating point numbers"""
-    if abs(a - b) < 0.000001:
-        return CompType.EQ
-    return CompType.LT if a < b else CompType.GT
-
 def decide():
     # call the cmv functions
     CMV = [False] * 15
