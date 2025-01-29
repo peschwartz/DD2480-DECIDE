@@ -7,6 +7,7 @@ from GLOBAL_VARS import *
 
 # LIC 0
 def lic_0(LENGTH1: float, POINTS: list, NUMPOINTS: int):
+    assert LENGTH1 >= 0, "LENGTH1 must be non-negative"
     if NUMPOINTS < 2:
         return False
     for i in range(NUMPOINTS-1):
@@ -18,6 +19,7 @@ def lic_0(LENGTH1: float, POINTS: list, NUMPOINTS: int):
 
 # LIC 1
 def lic_1(RADIUS1: float, POINTS: list, NUMPOINTS: int):
+    assert RADIUS1 >= 0, "RADIUS1 must be non-negative"
     # Return false if there are not enough points
     if NUMPOINTS < 3:
         return False
@@ -52,7 +54,7 @@ def lic_1(RADIUS1: float, POINTS: list, NUMPOINTS: int):
 
 # LIC 2
 def lic_2(POINTS: List[Coordinate], EPSILON: float, PI: float):
-    assert 0 <= EPSILON and EPSILON < PI
+    assert 0 <= EPSILON and EPSILON < PI, "EPSILON must be in [0,PI)"
     min_angle = PI - EPSILON
     max_angle = PI + EPSILON
     for fst, snd, trd in zip(POINTS, POINTS[1:], POINTS[2:]):
@@ -68,6 +70,7 @@ def lic_2(POINTS: List[Coordinate], EPSILON: float, PI: float):
 
 # LIC 3
 def lic_3(AREA1: float, POINTS: list, NUMPOINTS: int):
+    assert AREA1 >= 0, "AREA1 must be non-negative"
     # There exists at least one set of three consecutive data points that are the vertices of 
     # a triangle with area greater than AREA1.
 
@@ -91,6 +94,8 @@ def lic_3(AREA1: float, POINTS: list, NUMPOINTS: int):
 
 # LIC 4
 def lic_4(POINTS: int, NUMPOINTS: int, Q_PTS: int, QUADS: int):
+    assert 2 <= Q_PTS <= NUMPOINTS, "Q_PTS must be between 2 and NUMPOINTS"
+    assert 1 <= QUADS <= 3, "QUADS must be between 1 and 3"
     # There exists at least one set of Q_PTS consecutive data points that lie in more than QUADS
     # quadrants. Where there is ambiguity as to which quadrant contains a given point, priority
     # of decision will be by quadrant number, i.e., I, II, III, IV. For example, the data point (0,0)
@@ -130,6 +135,8 @@ def lic_5(POINTS: list, NUMPOINTS: int):
 
 # LIC 6
 def lic_6(N_PTS: int, DIST: float, POINTS: list, NUMPOINTS: int) -> bool:
+    assert N_PTS >= 3 and N_PTS <= NUMPOINTS, "N_PTS must be between 3 and NUMPOINTS"
+    assert DIST >= 0, "DIST must be non-negative"
     # Condition not meet when fewer then 3 points
     if NUMPOINTS < 3:
         return False
@@ -166,6 +173,8 @@ def lic_6(N_PTS: int, DIST: float, POINTS: list, NUMPOINTS: int) -> bool:
 
 # LIC 7
 def lic_7(POINTS: list, K_PTS: int, LENGTH1: float, NUMPOINTS: int):
+    assert K_PTS >= 1 and K_PTS <= NUMPOINTS - 2, "K_PTS must be between 1 and NUMPOINTS-2"
+    assert LENGTH1 >= 0, "LENGTH1 must be non-negative"
     if NUMPOINTS < 3:
         return False
 
@@ -179,6 +188,10 @@ def lic_7(POINTS: list, K_PTS: int, LENGTH1: float, NUMPOINTS: int):
 
 # LIC 8
 def lic_8(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float):
+    assert A_PTS >= 1, "A_PTS must be at least 1"
+    assert B_PTS >= 1, "B_PTS must be at least 1"
+    assert A_PTS + B_PTS <= NUMPOINTS - 3, "A_PTS + B_PTS must be at most NUMPOINTS-3"
+    assert RADIUS1 >= 0, "RADIUS1 must be non-negative"
     # there exists at least one set of 3 data points separated by exactly 
     # A_PTS and B_PTS consecutive intervening points, respectively, that cannot 
     # be contained within or on a circle of radius RADIUS1. 
@@ -207,6 +220,10 @@ def lic_8(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float):
 
 # LIC 9
 def lic_9(POINTS: list, NUMPOINTS: int, C_PTS: int, D_PTS: int, EPSILON: float):
+    assert C_PTS >= 1, "C_PTS must be at least 1"
+    assert D_PTS >= 1, "D_PTS must be at least 1"
+    assert C_PTS + D_PTS <= NUMPOINTS - 3, "C_PTS + D_PTS must be at most NUMPOINTS-3"
+    assert EPSILON >= 0 and EPSILON < PI, "EPSILON must be in [0,PI)"
     # There exists at least one set of three data points separated by exactly C_PTS and D_PTS
     # consecutive intervening points, respectively, that form an angle such that:
     # angle < (PI−EPSILON) or angle > (PI+EPSILON). The second point of the set of three points is always the vertex of the angle. 
@@ -241,12 +258,11 @@ def lic_9(POINTS: list, NUMPOINTS: int, C_PTS: int, D_PTS: int, EPSILON: float):
 
 # LIC 10
 def lic_10(E_PTS: int, F_PTS: int, AREA1: float, POINTS: list, NUMPOINTS: int):
-    if E_PTS < 1 or F_PTS < 1:
-        return False
-    if E_PTS + F_PTS > NUMPOINTS - 3:
-        return False
-    if NUMPOINTS < 5:
-        return False
+    assert E_PTS >= 1, "E_PTS must be at least 1"
+    assert F_PTS >= 1, "F_PTS must be at least 1"
+    assert E_PTS + F_PTS <= NUMPOINTS - 3, "E_PTS + F_PTS must be at most NUMPOINTS-3"
+    assert AREA1 >= 0, "AREA1 must be non-negative"
+
 
     # iterating through valid triplets
     for i in range(NUMPOINTS - E_PTS - F_PTS - 2):
@@ -260,6 +276,7 @@ def lic_10(E_PTS: int, F_PTS: int, AREA1: float, POINTS: list, NUMPOINTS: int):
 
 # LIC 11
 def lic_11(G_PTS: int, POINTS: list, NUMPOINTS: int) -> bool:
+    assert G_PTS >= 1 and G_PTS <= NUMPOINTS - 2, "G_PTS must be between 1 and NUMPOINTS-2"
     if NUMPOINTS < 3:
         return False
     for i in range(NUMPOINTS - G_PTS - 1):
@@ -271,6 +288,9 @@ def lic_11(G_PTS: int, POINTS: list, NUMPOINTS: int) -> bool:
 
 # LIC 12
 def lic_12(POINTS: list, K_PTS: int, LENGTH1: float, LENGTH2: float, NUMPOINTS: int):
+    assert K_PTS >= 1 and K_PTS <= NUMPOINTS - 2, "K_PTS must be between 1 and NUMPOINTS-2"
+    assert LENGTH1 >= 0, "LENGTH1 must be non-negative"
+    assert LENGTH2 >= 0, "LENGTH2 must be non-negative"
     if NUMPOINTS < 3:
         return False
 
@@ -288,6 +308,11 @@ def lic_12(POINTS: list, K_PTS: int, LENGTH1: float, LENGTH2: float, NUMPOINTS: 
 
 # LIC 13
 def lic_13(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float, RADIUS2: float):
+    assert A_PTS >= 1, "A_PTS must be at least 1"
+    assert B_PTS >= 1, "B_PTS must be at least 1"
+    assert A_PTS + B_PTS <= NUMPOINTS - 3, "A_PTS + B_PTS must be at most NUMPOINTS-3"
+    assert RADIUS1 >= 0, "RADIUS1 must be non-negative"
+    assert RADIUS2 >= 0, "RADIUS2 must be non-negative"
 
     if NUMPOINTS < 5:
         return False
@@ -322,6 +347,11 @@ def lic_13(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float,
 
 # LIC 14
 def lic_14(POINTS: int, NUMPOINTS: int, E_PTS: int, F_PTS: int, AREA1: float, AREA2: float):
+    assert E_PTS >= 1, "E_PTS must be at least 1"
+    assert F_PTS >= 1, "F_PTS must be at least 1"
+    assert E_PTS + F_PTS <= NUMPOINTS - 3, "E_PTS + F_PTS must be at most NUMPOINTS-3"
+    assert AREA1 >= 0, "AREA1 must be non-negative"
+    assert AREA2 >= 0, "AREA2 must be non-negative"
     # There exists at least one set of three data points, separated by exactly E_PTS and F_PTS consecutive intervening points,
     # respectively, that are the vertices of a triangle with area greater than AREA1. In addition, there exist three data points (which
     # can be the same or different from the three data points just mentioned) separated by exactly E_PTS and F_PTS consecutive
