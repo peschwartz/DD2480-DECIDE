@@ -17,62 +17,40 @@ def parse_input(queue : deque):
         gv.POINTS.append((x,y))
 
     # PARAMETERS
-    gv.PARAMETERS.LENGTH1 = float(queue.popleft())
-    assert 0 <= gv.PARAMETERS.LENGTH1
+    gv.PARAMETERS.LENGTH1 = float(queue.popleft())  
 
     gv.PARAMETERS.RADIUS1 = float(queue.popleft())
-    assert 0 <= gv.PARAMETERS.RADIUS1
 
     gv.PARAMETERS.EPSILON = float(queue.popleft())
-    assert 0 <= gv.PARAMETERS.EPSILON and gv.PARAMETERS.EPSILON < gv.PI
 
     gv.PARAMETERS.AREA1 = float(queue.popleft())
-    assert 0 <= gv.PARAMETERS.AREA1
 
     gv.PARAMETERS.Q_PTS = int(queue.popleft())
-    assert 2 <= gv.PARAMETERS.Q_PTS <= gv.NUMPOINTS
 
     gv.PARAMETERS.QUADS = int(queue.popleft())
-    assert 1 <= gv.PARAMETERS.QUADS <= 3
 
     gv.PARAMETERS.DIST = float(queue.popleft())
-    assert 0 <= gv.PARAMETERS.DIST
 
     gv.PARAMETERS.N_PTS = int(queue.popleft())
-    assert 3 <= gv.PARAMETERS.N_PTS <= gv.NUMPOINTS
 
     gv.PARAMETERS.K_PTS = int(queue.popleft())
-    assert 1 <= gv.PARAMETERS.K_PTS <= gv.NUMPOINTS - 2
 
     gv.PARAMETERS.A_PTS = int(queue.popleft())
     gv.PARAMETERS.B_PTS = int(queue.popleft())
-    assert 1 <= gv.PARAMETERS.A_PTS
-    assert 1 <= gv.PARAMETERS.B_PTS
-    assert gv.PARAMETERS.A_PTS + gv.PARAMETERS.B_PTS <= gv.NUMPOINTS - 3
 
     gv.PARAMETERS.C_PTS = int(queue.popleft())
     gv.PARAMETERS.D_PTS = int(queue.popleft())
-    assert 1 <= gv.PARAMETERS.C_PTS
-    assert 1 <= gv.PARAMETERS.D_PTS
-    assert gv.PARAMETERS.C_PTS + gv.PARAMETERS.D_PTS <= gv.NUMPOINTS - 3
 
     gv.PARAMETERS.E_PTS = int(queue.popleft())
     gv.PARAMETERS.F_PTS = int(queue.popleft())
-    assert 1 <= gv.PARAMETERS.E_PTS
-    assert 1 <= gv.PARAMETERS.F_PTS
-    assert gv.PARAMETERS.E_PTS + gv.PARAMETERS.F_PTS <= gv.NUMPOINTS - 3
 
     gv.PARAMETERS.G_PTS = int(queue.popleft())
-    assert 1 <= gv.PARAMETERS.G_PTS <= gv.NUMPOINTS - 2 
 
     gv.PARAMETERS.LENGTH2 = float(queue.popleft())
-    assert 0 <= gv.PARAMETERS.LENGTH2
 
     gv.PARAMETERS.RADIUS2 = float(queue.popleft())
-    assert 0 <= gv.PARAMETERS.RADIUS2
 
     gv.PARAMETERS.AREA2 = float(queue.popleft())
-    assert 0 <= gv.PARAMETERS.AREA2
 
     # LCM
     for j in range(gv.LIC_COUNT):
@@ -118,8 +96,6 @@ def read_input(file):
         with open(file) as f:
             lines = f.readlines()
 
-        # Seems safe to check input length, maybe unnecessary?
-        assert len(lines) < gv.INPUT_LINE_MAX
         # filter out comments, empty lines and remove newline characters
         lines = filter(
             lambda x : len( x.strip() ) > 0 and x[0] != '#', 
