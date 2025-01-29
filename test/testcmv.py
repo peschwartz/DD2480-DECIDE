@@ -154,7 +154,6 @@ class Test3(unittest.TestCase):
         # should be false since there are less than 3 points
         self.assertFalse(lic_3(self.area, self.points, 2))
 
-
 class Test4(unittest.TestCase):
     # test the LIC 4 function
     def setUp(self):
@@ -251,6 +250,7 @@ class Test6(unittest.TestCase):
         self.num_points = len(self.points)
 
     def test_6_true(self):
+        # A point (2,6) is farther than DIST=1 from the line joining (0,0) to (2,0), so returns True.
         self.points = [(0,0), (1,0), (2,0), (2,6), (3,5)]
         self.num_points = len(self.points)
         self.assertTrue(
@@ -261,6 +261,8 @@ class Test6(unittest.TestCase):
         )
 
     def test_6_false(self):
+        # DIST is set to 5, and no point is farther than this from the relevant line, so returns False.
+        self.parameters.DIST = 5.0
         self.parameters.DIST = 5.0
         self.assertFalse(
             lic_6(self.parameters.N_PTS, 
@@ -270,6 +272,7 @@ class Test6(unittest.TestCase):
         )
 
     def test_6_too_few_points(self):
+        # LIC 6 requires at least 3 points, and this test provides only 2, so returns False.
         fewer_points = [(0,0), (1,1)]
         self.assertFalse(
             lic_6(self.parameters.N_PTS, 
@@ -279,12 +282,14 @@ class Test6(unittest.TestCase):
         )
 
     def test_6_identical_endpoints_true(self):
+        # First and last points are identical, and (1,1) is farther than DIST=0.5, so returns True.
         pts = [(0,0), (1,1), (0,0)]
         self.assertTrue(
             lic_6(3, 0.5, pts, len(pts))
         )
 
     def test_6_identical_endpoints_false(self):
+        # All points are identical, meaning all distances are zero, so returns False.
         pts = [(1,1), (1,1), (1,1)]
         self.assertFalse(
             lic_6(3, 0.5, pts, len(pts))
