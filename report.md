@@ -14,8 +14,8 @@
 
 [ Klara ]:
 
-- Implementation of LICs 1, 6, 14
-- Testing of LICs 1, 6, 14
+- Implementation of LICs 1, 6, 11
+- Testing of LICs 1, 6, 11
 - Writing parts of the ReadMe, including the Way of Working statement
 - Cleaned up some comments and refactored parts of the code to improve readability
 
