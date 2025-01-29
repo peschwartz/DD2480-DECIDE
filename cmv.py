@@ -85,9 +85,6 @@ vertices of a triangle with area greater than AREA1.
 def lic_3(AREA1: float, POINTS: list, NUMPOINTS: int):
     assert AREA1 >= 0, "AREA1 must be non-negative"
 
-    # check if AREA1 is greater than 0 and NUMPOINTS >= 3, if not, throw an exception
-    if AREA1 <= 0:
-        return False
     # There must exist 3 point
     if NUMPOINTS < 3:
         return False
@@ -216,12 +213,6 @@ def lic_8(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float):
 
     # The condition is not met when NUMPOINTS < 5. 
     if NUMPOINTS < 5:
-        return False
-    if A_PTS < 1:
-        return False
-    if B_PTS < 1:
-        return False
-    if A_PTS + B_PTS > NUMPOINTS - 3:
         return False
     
     for i in range(NUMPOINTS - 2 - A_PTS - B_PTS):
@@ -358,12 +349,6 @@ def lic_13(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float,
 
     # The condition is not met when NUMPOINTS < 5.
     if NUMPOINTS < 5:
-        return False
-    if A_PTS < 1:
-        return False
-    if B_PTS < 1:
-        return False
-    if A_PTS + B_PTS > NUMPOINTS - 3:
         return False
     
     check = [False, False]
