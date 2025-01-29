@@ -62,7 +62,7 @@ Check that there exists at least one set of three consecutive data points which 
 an angle such that: angle < PI−EPSILON or angle > PI+EPSILON. The second of the three 
 consecutive points is always the vertex of the angle. 
 '''
-def lic_2(POINTS: List[Coordinate], EPSILON: float, PI: float):
+def lic_2(POINTS: list, EPSILON: float, PI: float):
     assert 0 <= EPSILON and EPSILON < PI, "EPSILON must be in [0,PI)"
     min_angle = PI - EPSILON
     max_angle = PI + EPSILON
@@ -106,7 +106,7 @@ point, priority of decision will be by quadrant number, i.e., I, II, III, IV. Fo
 the data point (0,0) is in quadrant I, the point (-l,0) is in quadrant II, the point (0,-l) 
 is in quadrant III, the point (0,1) is in quadrant I and the point (1,0) is in quadrant I. 
 '''
-def lic_4(POINTS: int, NUMPOINTS: int, Q_PTS: int, QUADS: int):
+def lic_4(POINTS: list, NUMPOINTS: int, Q_PTS: int, QUADS: int):
     assert 2 <= Q_PTS <= NUMPOINTS, "Q_PTS must be between 2 and NUMPOINTS"
     assert 1 <= QUADS <= 3, "QUADS must be between 1 and 3"
 
@@ -381,7 +381,7 @@ same or different from the three data points just mentioned) separated by exactl
 F_PTS consecutive intervening points, respectively, that are the vertices of a triangle with 
 area less than AREA2. Both parts must be true for the LIC to be true. 
 '''
-def lic_14(POINTS: int, NUMPOINTS: int, E_PTS: int, F_PTS: int, AREA1: float, AREA2: float):
+def lic_14(POINTS: list, NUMPOINTS: int, E_PTS: int, F_PTS: int, AREA1: float, AREA2: float):
     assert E_PTS >= 1, "E_PTS must be at least 1"
     assert F_PTS >= 1, "F_PTS must be at least 1"
     assert E_PTS + F_PTS <= NUMPOINTS - 3, "E_PTS + F_PTS must be at most NUMPOINTS-3"
