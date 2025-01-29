@@ -1,6 +1,8 @@
+# File for storing utility function for the rest of the decide program
 import math
+
 from GLOBAL_VARS import Coordinate
-# util functions go here
+
 # Function to calculate the distance between two points given their x,y coordinates
 def distance(x1, y1, x2, y2):
     return ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
