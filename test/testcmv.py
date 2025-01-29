@@ -163,10 +163,6 @@ class Test3(unittest.TestCase):
         # should be false since there are 3 points that do not have an area large enough
         self.assertFalse(lic_3(self.area, self.points, 3)) 
     
-    def test_error(self):
-        # should be false since the area is 0
-        self.assertFalse(lic_3(0, self.points, self.num_points))
-    
     def test_num_error(self):
         # should be false since there are less than 3 points
         self.assertFalse(lic_3(self.area, self.points, 2))

@@ -75,8 +75,6 @@ def lic_3(AREA1: float, POINTS: list, NUMPOINTS: int):
     # a triangle with area greater than AREA1.
 
     # check if AREA1 is greater than 0 and NUMPOINTS >= 3, if not, throw an exception
-    if AREA1 <= 0:
-        return False
     if NUMPOINTS < 3:
         return False
     
@@ -86,8 +84,6 @@ def lic_3(AREA1: float, POINTS: list, NUMPOINTS: int):
         x3, y3 = POINTS[point+2]
         area = triangle_area(x1, y1, x2, y2, x3, y3)
         if area > AREA1:
-            # print(f"Area: {area} > {AREA1}")
-            # print(f"Points: {x1, y1}, {x2, y2}, {x3, y3}")
             return True
 
     return False
