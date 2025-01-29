@@ -153,10 +153,9 @@ def lic_6(N_PTS: int, DIST: float, POINTS: list, NUMPOINTS: int) -> bool:
         x2, y2 = POINTS[start_idx + N_PTS - 1]
         # Check if the first and last points are the same
         same_endpoints = (abs(x1 - x2) < 1e-9 and abs(y1 - y2) < 1e-9)
-        # Pre-calc line length if not coincident
-        if not same_endpoints:
-            line_len = distance(x1, y1, x2, y2)
-
+        # Ensure line_len is always initialized to prevent potential errors
+        line_len = 0 if same_endpoints else distance(x1, y1, x2, y2)
+        # Now examine every point in this block
         for j in range(start_idx, start_idx + N_PTS):
             px, py = POINTS[j]
             # If endpoints coincide, measure distance from that single point
@@ -168,13 +167,12 @@ def lic_6(N_PTS: int, DIST: float, POINTS: list, NUMPOINTS: int) -> bool:
                     d = distance(x1, y1, px, py)
                 else:
                     # Standard perpendicular distance formula using cross product
-                    cross = abs((x2 - x1)*(y1 - py) - (y2 - y1)*(x1 - px))
+                    cross = abs((x2 - x1) * (y1 - py) - (y2 - y1) * (x1 - px))
                     d = cross / line_len
             # If any point is too far, condition is satisfied => True
             if d > DIST:
                 return True
     return False
-
 ''' 
 Check that there exists at least one set of two data points separated by exactly K_PTS 
 consecutive intervening points that are a distance greater than the length, LENGTH1, apart. 
