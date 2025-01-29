@@ -115,7 +115,12 @@ As a group, we were very successful with our implementation of the DECIDE framew
 
 ## Way of Working
 
-Our team is currently in the [state name] state according to the Essence standard. We have established clear communication channels, defined our development workflow, and set up the necessary tools and frameworks. Our main obstacles to reaching the next state include [obstacles]. We are actively working on addressing these challenges through [solutions/approaches].
+Our team is currently at the [In Use] state in our way of working and actively progressing towards [In Place] according to the Essence Standard. We consistently use GitHub as our primary tool for collaboration, with all team members contributing to the repository. Our workflow is structured around frequent code reviews and testing, ensuring that our practices are regularly inspected and refined. To adapt to our team’s needs, we’ve broken down the assignment into smaller tasks, addressing multiple issues and merging contributions effectively.
+
+Knowledge sharing has been a key part of our process, with team members supporting each other in using Git and maintaining clear documentation through issues and task assignments. Regular communication, including scheduled morning meetings, has helped us stay aligned and collaborative.
+
+To fully transition to the [In Place] state, we aim to improve consistency in code reviews, ensuring that more team members are actively involved in reviewing each other’s work. While everyone had access to the tools for this assignment, we need to confirm that all members can independently run it. Strengthening these areas will help us establish a more structured and fully integrated way of working as a team.
+
 
 ## License
 
