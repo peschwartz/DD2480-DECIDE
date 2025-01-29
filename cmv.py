@@ -262,12 +262,7 @@ def lic_10(E_PTS: int, F_PTS: int, AREA1: float, POINTS: list, NUMPOINTS: int):
     assert F_PTS >= 1, "F_PTS must be at least 1"
     assert E_PTS + F_PTS <= NUMPOINTS - 3, "E_PTS + F_PTS must be at most NUMPOINTS-3"
     assert AREA1 >= 0, "AREA1 must be non-negative"
-    if E_PTS < 1 or F_PTS < 1:
-        return False
-    if E_PTS + F_PTS > NUMPOINTS - 3:
-        return False
-    if NUMPOINTS < 5:
-        return False
+
 
     # iterating through valid triplets
     for i in range(NUMPOINTS - E_PTS - F_PTS - 2):
