@@ -31,14 +31,6 @@ def test_values():
 
     print("PUV ({}): {}".format(len(PUV), PUV))
 
-# compares floating point numbers 
-# from the headerfile in project specification
-def DOUBLECOMPARE(a: float, b: float) -> CompType:
-    """Compares floating point numbers"""
-    if abs(a - b) < 0.000001:
-        return CompType.EQ
-    return CompType.LT if a < b else CompType.GT
-
 '''
 Generate a boolean signal which determines whether an interceptor should be launched 
 based upon input radar tracking information. Radar tracking information is available 

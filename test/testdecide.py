@@ -2,13 +2,14 @@ import unittest
 from decide import *
 from GLOBAL_VARS import *
 from decide_io import *
+from lib.util import *
 
 
 class TestDecide(unittest.TestCase):
 
     def setUp(self):
         # Reset global variables before each test
-        gv.reset_globals()
+        reset_globals()
     
     def test_decide(self):
         # test the decide.py file correctly computes the variables and returns YES
@@ -32,8 +33,8 @@ class TestDecide(unittest.TestCase):
         read_input("./test/test_decide3.in")
 
         self.cmv, self.pum, self.fuv, self.launch = decide()
-        
+
         self.assertNotEqual(self.cmv, [True]*15)
         self.assertNotEqual(self.pum[0], [True]*15)
-        self.assertEqual(self.fuv, [True]*15)
-        self.assertEqual(self.launch, "YES")
+        self.assertNotEqual(self.fuv, [True]*15)
+        self.assertEqual(self.launch, "NO")

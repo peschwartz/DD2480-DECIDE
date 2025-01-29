@@ -59,12 +59,3 @@ CMV: Vector = []                    # Conditions Met Vector
 PUV: Vector = []                    # Preliminary Unlocking Vector
 FUV: Vector = []                    # Final Unlocking Vector
 LAUNCH: bool = False                # Decision: Launch or No Launch
-
-# Reset value of global input variables
-def reset_globals():
-    global NUMPOINTS, POINTS, PARAMETERS, LCM, PUV
-    NUMPOINTS = 0
-    POINTS = []
-    PARAMETERS = Parameters()
-    LCM = []
-    PUV = []
