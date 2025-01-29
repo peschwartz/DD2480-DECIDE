@@ -198,12 +198,6 @@ def lic_8(POINTS: list, NUMPOINTS: int, A_PTS: int, B_PTS: int, RADIUS1: float):
 
     if NUMPOINTS < 5:
         return False
-    if A_PTS < 1:
-        return False
-    if B_PTS < 1:
-        return False
-    if A_PTS + B_PTS > NUMPOINTS - 3:
-        return False
     
     for i in range(NUMPOINTS - 2 - A_PTS - B_PTS):
         p1 = POINTS[i]
