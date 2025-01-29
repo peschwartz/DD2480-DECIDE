@@ -11,6 +11,7 @@
 - Implementation of LICs 2, 7, 12
 - Testing of LICs 2, 7, 12
 - Implementation of decide_io as well as IO file structure
+- Done some work refactor code as well as code comments
 
 [ Klara ]:
 
