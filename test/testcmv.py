@@ -86,6 +86,7 @@ class Test1(unittest.TestCase):
         self.parameters.RADIUS1 = 5.0
         self.assertFalse(lic_1(self.parameters.RADIUS1, self.points, self.num_points))
 
+class Test2(unittest.TestCase):
     # TESTS FOR LIC 2
     def test_20(self):
         # Point 1 and/or 2 coincides
@@ -350,8 +351,8 @@ class Test9(unittest.TestCase):
         self.d_pts = 1
 
     def test_correct(self):
-        # should be correct since the angle is within the range
-        self.assertEqual(lic_9(self.points, self.num_points,self.c_pts,self.d_pts,1), True)
+        # should be false since the angle is within the range [PI-EPSILON, PI+EPSILON]
+        self.assertEqual(lic_9(self.points, self.num_points,self.c_pts,self.d_pts,1), False)
 
     def test_incorrect_c_pts(self):
         # should be false since C_PTS < 1
