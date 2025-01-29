@@ -2,8 +2,9 @@
 
 [ Carl ]:
 
-- Implementation of ...
-- Testing of ...
+- Implementation of LICs 4, 9, 14
+- Testing of LICs 4, 9, 14
+- Checked that the commit messages were proper
 
 [ Jacob ]:
 
