@@ -133,7 +133,7 @@ def lic_5(POINTS: list, NUMPOINTS: int):
 def lic_6(N_PTS: int, DIST: float, POINTS: list, NUMPOINTS: int) -> bool:
     assert N_PTS >= 3 and N_PTS <= NUMPOINTS, "N_PTS must be between 3 and NUMPOINTS"
     assert DIST >= 0, "DIST must be non-negative"
-    # Condition not meet when fewer then 3 points
+    # Condition not met when fewer than 3 points
     if NUMPOINTS < 3:
         return False
     # Iterate over every consecutive block of size N_PTS
@@ -143,9 +143,8 @@ def lic_6(N_PTS: int, DIST: float, POINTS: list, NUMPOINTS: int) -> bool:
         x2, y2 = POINTS[start_idx + N_PTS - 1]
         # Check if the first and last points are the same
         same_endpoints = (abs(x1 - x2) < 1e-9 and abs(y1 - y2) < 1e-9)
-        # Pre-calc line length if not coincident
-        if not same_endpoints:
-            line_len = distance(x1, y1, x2, y2)
+        # Ensure line_len is always initialized to prevent potential errors
+        line_len = 0 if same_endpoints else distance(x1, y1, x2, y2)
         # Now examine every point in this block
         for j in range(start_idx, start_idx + N_PTS):
             px, py = POINTS[j]
@@ -158,14 +157,12 @@ def lic_6(N_PTS: int, DIST: float, POINTS: list, NUMPOINTS: int) -> bool:
                     d = distance(x1, y1, px, py)
                 else:
                     # Standard perpendicular distance formula using cross product
-                    cross = abs((x2 - x1)*(y1 - py) - (y2 - y1)*(x1 - px))
+                    cross = abs((x2 - x1) * (y1 - py) - (y2 - y1) * (x1 - px))
                     d = cross / line_len
             # If any point is too far, condition is satisfied => True
             if d > DIST:
                 return True
     return False
-
-
 
 # LIC 7
 def lic_7(POINTS: list, K_PTS: int, LENGTH1: float, NUMPOINTS: int):
