@@ -110,11 +110,6 @@ def lic_4(POINTS: list, NUMPOINTS: int, Q_PTS: int, QUADS: int):
     assert 2 <= Q_PTS <= NUMPOINTS, "Q_PTS must be between 2 and NUMPOINTS"
     assert 1 <= QUADS <= 3, "QUADS must be between 1 and 3"
 
-    if QUADS > 3 or QUADS < 1:
-        return False
-    if Q_PTS < 2 or Q_PTS > NUMPOINTS:
-        return False
-    
     # mapping coordinates to quadrant
     quads = [quadrants(x,y) for x,y in POINTS]
     for i in range(NUMPOINTS-Q_PTS+1):
@@ -390,10 +385,6 @@ def lic_14(POINTS: list, NUMPOINTS: int, E_PTS: int, F_PTS: int, AREA1: float, A
 
     # Condition is not met when NUMPOINTS < 5
     if NUMPOINTS < 5:
-        return False
-    
-    # Condition is not met when AREA2 < 0
-    if AREA2 < 0:
         return False
     
     # check condition
