@@ -4,7 +4,7 @@ DECIDE is a program that implements a launch interceptor system, analyzing radar
 ## Description
 The function processes up to 100 radar-tracked objects and evaluates them against 15 Launch Interceptor Conditions (LICs). These conditions examine various factors, such as how close or far objects are, whether they form certain angles or shapes, and how they move relative to each other.
 
-To make a final decision, DECIDE uses a Logical Connector Matrix (LCM) and a Preliminary Unlocking Vector (PUV). The LCM defines how conditions should be logically combined using AND/OR rules, while the PUV specifies which conditions must be considered. If all necessary conditions are satisfied, the function signals approval for missile launch; otherwise, the launch is blocked.
+To make a final decision, DECIDE uses a Logical Connector Matrix (LCM) and a Preliminary Unlocking Vector (PUV). The LCM defines how conditions should be logically combined using AND/OR rules, while the PUV specifies which conditions must be considered. If all necessary conditions are satisfied, the Funal Unlocking Vector (FUV) signals approval for missile LAUNCH and returns YES; otherwise, the LAUNCH is blocked and returns NO.
 
 DECIDE acts as a crucial safeguard in the missile defense system, ensuring that interceptors are only deployed under appropriate circumstances.
 
@@ -83,4 +83,24 @@ python -m unittest discover test
 
 ## License
 
-This project is part of the DD2480 course at KTH. All rights reserved.
+MIT License
+
+Copyright (c) 2025 Carl Lönnqvist, Jacob Molin, Klara Lindemalm, Phoebe Schwartz, Samuel Söderberg
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
