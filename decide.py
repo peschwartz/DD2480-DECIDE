@@ -21,16 +21,6 @@ def final_values():
 
     print("LAUNCH: {}".format(LAUNCH))
 
-def test_values():
-
-    
-    print("LCM {}".format(len(LCM)))
-    for i in range(15):
-        print(len(LCM[i]))
-        print(LCM[i])
-
-    print("PUV ({}): {}".format(len(PUV), PUV))
-
 # from the headerfile in the description
 def DOUBLECOMPARE(a: float, b: float) -> CompType:
     """Compares floating point numbers"""
@@ -80,4 +70,7 @@ if __name__ == "__main__":
     # print the final values
     # final_values()
 
-    print(LAUNCH)
+    if LAUNCH:
+        print("YES")
+    else:
+        print("NO")
