@@ -8,8 +8,9 @@
 
 [ Jacob ]:
 
-- Implementation of ...
-- Testing of ...
+- Implementation of LICs 2, 7, 12
+- Testing of LICs 2, 7, 12
+- Implementation of decide_io as well as IO file structure
 
 [ Klara ]:
 
