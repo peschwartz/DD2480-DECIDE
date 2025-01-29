@@ -1,13 +1,13 @@
 import unittest
 from decide import *
 from decide_io import *
-
+from lib.util import *
 
 class TestInputParse(unittest.TestCase):
 
     def setUp(self):
         # Reset global variables before each test
-        gv.reset_globals()
+        reset_globals()
         read_input("./test/test_decide.in")
     
     def test_basic_parameters(self):
