@@ -1,8 +1,6 @@
 import GLOBAL_VARS as gv
 from collections import deque
 import re
-import sys
-
 
 def parse_input(queue : deque):
     # NUMPOINTS
@@ -117,7 +115,3 @@ def read_input(file):
         return -1
 
     return 0
-
-if __name__ == "__main__":
-    if read_input() == 0:
-        gv.test_values()
