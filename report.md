@@ -1,37 +1,44 @@
-# Report
+## Statement of Contributions
 
-## Way of Working Statement
+[ Carl ]:
 
-- way of working is the key practices and tools 
-- keeps adapting as the project goes on 
-- checklist is below...
+- Implementation of LICs 4, 9, 14
+- Testing of LICs 4, 9, 14
+- Checked that the commit messages were proper
 
-Split into 6 states and checks within each state
-- Principles Established
-    - we know the principles and constrains and our stakeholders (professors/tas) also know them. 
-- Foundation Established
-    - Key practices and tools are agreed and started on, especially the non-negotiable ones
-    - the gaps in practices and tools are analyzed and understood, and the gaps in abilities are also analyzed and understood
-- In Use
-    - Practices and tools are being used, regularily inspected, and adapted to the team's context
-    - supported by the team
-    - procedures are in place to handle feedback on the team's way of working
-- In Place
-    - Practices and tools are being used by the whole team to perform the work
-    - all team members have access to use them
-    - whole team is involved in the inspection and adaptation of the way-of-working
-- Working Well
-    - Team members are making process and adapting the way-of-working to suit their context
-    - naturally applies practices without thinking about them
-    - tools support the way the team works
-    - team continues to tune the practices and tools
-- Retired
-    - Team's way of working is no longer being used
-    - lessons learned are shared for future use
+[ Jacob ]:
 
-Some notes
-- we use whatsapp to communicate quickly with group members but use discord for video calls when we cannot meet in person or need to pair program
-- we use issues in github to keep track of what needs to be completed 
-- we meet frequently in person to check in on our tasks and make sure we are all on the same page
-- we keep in touch over whatsapp to make sure we are all communicating
-- we write documentation on overleaf for some reports but keep the project related documents in github using markdown files
+- Implementation of LICs 2, 7, 12
+- Testing of LICs 2, 7, 12
+- Implementation of decide_io as well as IO file structure
+
+[ Klara ]:
+
+- Implementation of LICs 1, 6, 11
+- Testing of LICs 1, 6, 11
+- Writing parts of the ReadMe, including the Way of Working statement
+- Cleaned up some comments and refactored parts of the code to improve readability
+
+[ Phoebe ]:
+
+- Implementation of LICs 3, 8, 13
+- Testing of LIC3, 8, 13, PUM
+- Implementation of PUM file with calculation function
+- Implementation of PUM testing
+- Implementation of the decide file and functions
+- Implementation of the decide testing
+
+As a group, we were very successful with our implementation of the DECIDE framework. Not only did we complete the functions and implement them correctly, we also learned and practiced good software engineering processes. We communicated frequently and met in person often. We set rules for how we wanted to create commits and issues and followed these practices throughout the implementation of our framework.
+
+[ Samuel ]:
+
+- Implementation of LICs 0, 5, 10
+- Testing of LICs 0, 5, 10
+- Setting up initial testing skeletons for CMV and FUV as well as initial global variables
+- Implementation of the FUV and LAUNCH computation functions
+- Implementation of the FUV and LAUNCH tests
+- Debugging and fixing the input parsing function + various bug fixes
+
+## Way of Working
+
+Our team is currently at the [ In Use ] state in our way of working and actively progressing towards [ In Place ] according to the Essence Standard. We consistently use GitHub as our primary tool for collaboration, with all team members contributing to the repository. Our workflow is structured around frequent code reviews and testing, ensuring that our practices are regularly inspected and refined. To adapt to our team’s needs, we’ve broken down the assignment into smaller tasks, addressing multiple issues and merging contributions effectively. Knowledge sharing has been a key part of our process, with team members supporting each other in using Git and maintaining clear documentation through issues and task assignments. Regular communication, including scheduled morning meetings, has helped us stay aligned and collaborative. To fully transition to the [ In Place ] state, we aim to improve consistency in code reviews, ensuring that more team members are actively involved in reviewing each other’s work. While everyone had access to the tools for this assignment, we need to confirm that all members can independently run it. Strengthening these areas will help us establish a more structured and fully integrated way of working as a team.
