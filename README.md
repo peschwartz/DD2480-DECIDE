@@ -89,8 +89,10 @@ python -m unittest discover test
 
 [Klara ]:
 
-- Implementation of ...
-- Testing of ...
+- Implementation of LICs 1, 6, 14
+- Testing of LICs 1, 6, 14
+- Writing parts of the ReadMe, including the Way of Working statement
+- Cleaned up some comments and refactored parts of the code to improve readability
 
 [Phoebe ]:
 
@@ -100,7 +102,6 @@ python -m unittest discover test
 - Implementation of PUM testing
 - Implementation of the decide file and functions
 - Implementation of the decide testing
--
 
 As a group, we were very successful with our implementation of the DECIDE framework. Not only did we complete the functions and implement them correctly, we also learned and practiced good software engineering processes. We communicated frequently and met in person often. We set rules for how we wanted to create commits and issues and followed these practices throughout the implementation of our framework.
 
