@@ -1,6 +1,12 @@
 # DD2480-DECIDE
+DECIDE is a program that implements a launch interceptor system, analyzing radar tracking data to determine whether an interceptor should be launched based on predefined safety and engagement conditions.
 
-A program implementing the DECIDE launch interceptor system that determines whether to launch an interceptor based on input radar tracking information.
+## Description
+The function processes up to 100 radar-tracked objects and evaluates them against 15 Launch Interceptor Conditions (LICs). These conditions examine various factors, such as how close or far objects are, whether they form certain angles or shapes, and how they move relative to each other.
+
+To make a final decision, DECIDE uses a Logical Connector Matrix (LCM) and a Preliminary Unlocking Vector (PUV). The LCM defines how conditions should be logically combined using AND/OR rules, while the PUV specifies which conditions must be considered. If all necessary conditions are satisfied, the function signals approval for missile launch; otherwise, the launch is blocked.
+
+DECIDE acts as a crucial safeguard in the missile defense system, ensuring that interceptors are only deployed under appropriate circumstances.
 
 ## Requirements
 
