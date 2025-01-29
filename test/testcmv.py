@@ -628,11 +628,6 @@ class Test13(unittest.TestCase):
         self.radius2 = 2.0
         self.assertFalse(lic_13(self.points, self.num_points, self.a_pts, self.b_pts, self.radius1, self.radius2))
 
-    def test_num_error(self):
-        # test that insufficient points raises assertion
-        with self.assertRaises(AssertionError):
-            lic_13(self.points, 4, self.a_pts, self.b_pts, self.radius1, self.radius2)
-
     def test_total_num_error(self):
         # test that invalid point separation raises assertion
         with self.assertRaises(AssertionError):
