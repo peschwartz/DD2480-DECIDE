@@ -1,9 +1,14 @@
-import GLOBAL_VARS as gv
+# File storing functionality to read values from file into global variables
+
 from collections import deque
 import re
 import sys
 
+import GLOBAL_VARS as gv
 
+'''
+Parses input file according to input specification and set global variables.
+'''
 def parse_input(queue : deque):
     # NUMPOINTS
     line = queue.popleft()
@@ -112,6 +117,9 @@ def parse_input(queue : deque):
         raise ValueError
 
 
+''' 
+Read content of a specific input file, parse it and set global variables.
+'''
 def read_input(file):
 
     try: 

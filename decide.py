@@ -1,10 +1,13 @@
+# File containing decide() function
+
 from GLOBAL_VARS import *
 from decide_io import *
+from launch import *
 import cmv
 import pum
 import fuv
-from launch import *
 
+# Test function for viewing interal values
 def final_values():
     
     print("Parameters: {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, ".format(PARAMETERS.LENGTH1, PARAMETERS.RADIUS1, PARAMETERS.EPSILON, PARAMETERS.AREA1, PARAMETERS.Q_PTS, PARAMETERS.QUADS, PARAMETERS.DIST, PARAMETERS.N_PTS, PARAMETERS.K_PTS, PARAMETERS.A_PTS, PARAMETERS.B_PTS, PARAMETERS.C_PTS, PARAMETERS.D_PTS, PARAMETERS.E_PTS, PARAMETERS.F_PTS, PARAMETERS.G_PTS, PARAMETERS.LENGTH2, PARAMETERS.RADIUS2, PARAMETERS.AREA2))
@@ -16,14 +19,11 @@ def final_values():
     print("Numpoints: {}".format(gv.NUMPOINTS))
     print("Points ({}): {}".format(len(gv.POINTS), gv.POINTS))
     print("CMV ({}): {}".format(len(CMV), CMV))
-
     print("FUV ({}): {}".format(len(FUV), FUV))
-
     print("LAUNCH: {}".format(LAUNCH))
 
+# Test function for viewing values of LCM and PUV
 def test_values():
-
-    
     print("LCM {}".format(len(LCM)))
     for i in range(15):
         print(len(LCM[i]))
@@ -31,8 +31,13 @@ def test_values():
 
     print("PUV ({}): {}".format(len(PUV), PUV))
 
+'''
+Generate a boolean signal which determines whether an interceptor should be launched 
+based upon input radar tracking information. Radar tracking information is available 
+through global variables which are set using decide_io. 
+'''
 def decide():
-    # call the cmv functions
+    # calculate CMV values
     CMV = [False] * 15
 
     CMV[0] = cmv.lic_0(gv.PARAMETERS.LENGTH1, gv.POINTS, gv.NUMPOINTS)
@@ -51,7 +56,7 @@ def decide():
     CMV[13] = cmv.lic_13(gv.POINTS, gv.NUMPOINTS, gv.PARAMETERS.A_PTS, gv.PARAMETERS.B_PTS, gv.PARAMETERS.RADIUS1, gv.PARAMETERS.RADIUS2)
     CMV[14] = cmv.lic_14(gv.POINTS, gv.NUMPOINTS, gv.PARAMETERS.E_PTS, gv.PARAMETERS.F_PTS, gv.PARAMETERS.AREA1, gv.PARAMETERS.AREA2)
 
-    #calculate pum
+    #calculate PUM
     PUM = pum.calculate_pum(gv.LCM, CMV)
 
     # calculate FUV
@@ -62,15 +67,12 @@ def decide():
 
     return CMV, PUM, FUV, LAUNCH
 
-# make a main function to test the decide function
+# Strictly for testing decide() with test data.
 if __name__ == "__main__":
-    # read input from file
+    # read test input from file
     read_input("test/test_decide.in")
-    
+
     # call the decide function
     CMV, PUM, FUV, LAUNCH = decide()
-    
-    # print the final values
-    # final_values()
 
     print(LAUNCH)

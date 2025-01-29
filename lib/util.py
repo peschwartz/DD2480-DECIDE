@@ -1,6 +1,8 @@
+# File for storing utility function for the rest of the decide program
 import math
 import GLOBAL_VARS as gv
 # util functions go here
+
 # Function to calculate the distance between two points given their x,y coordinates
 def distance(x1, y1, x2, y2):
     return ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
@@ -56,13 +58,14 @@ def quadrants(x,y):
     
     return q
 
-# from the headerfile in the description
+# from the headerfile in the description, compares two floats
 def DOUBLECOMPARE(a: float, b: float) -> gv.CompType:
     """Compares floating point numbers"""
     if abs(a - b) < 0.000001:
         return gv.CompType.EQ
     return gv.CompType.LT if a < b else gv.CompType.GT
 
+# reset the global definitions for the input parameters to null
 def reset_globals():
     gv.NUMPOINTS = 0
     gv.POINTS = []
