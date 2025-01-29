@@ -3,12 +3,14 @@ from typing import List, Tuple
 
 # Constants
 PI = 3.141592653589793
+LIC_COUNT = 15
+INPUT_LINE_MAX = 1000
 
 # Enums
 class Connectors(Enum):
     NOTUSED = 777
     ORR = 778
-    ANDD = 779
+    ANDD = 789
 
 class CompType(Enum):
     LT = 1111
@@ -46,10 +48,25 @@ class Parameters:
 
 # Global variables
 PARAMETERS: Parameters = Parameters()
-POINTS: List[Coordinate] = []  # Array of the coordinates of data points
-NUMPOINTS: int = 0  # Number of data points
-LCM: CMatrix = []   # Logical Connector Matrix
-PUM: BMatrix = []   # Preliminary Unlocking Matrix
-CMV: Vector = []   # Conditions Met Vector
-FUV: Vector = []    # Final Unlocking Vector
-LAUNCH: bool = False          # Decision: Launch or No Launch
+POINTS: List[Coordinate] = []      # Array of the coordinates of data points
+NUMPOINTS: int = 0                 # Number of data points
+LCM: CMatrix = []           # Logical Connector Matrix
+PUV: Vector = []          # Preliminary Unlocking Vector
+PUM: BMatrix = []           # Preliminary Unlocking Matrix
+CMV: Vector = []           # Conditions Met Vector
+PUV: Vector = []           # Preliminary Unlocking Vector
+FUV: Vector = []          # Final Unlocking Vector
+LAUNCH: bool = False                # Decision: Launch or No Launch
+
+def reset_globals():
+    global NUMPOINTS, POINTS, PARAMETERS, LCM, PUV
+    NUMPOINTS = 0
+    POINTS = []
+    PARAMETERS = Parameters()
+    LCM = []
+    PUV = []
+
+
+
+
+
