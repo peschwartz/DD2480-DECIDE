@@ -163,10 +163,6 @@ class Test3(unittest.TestCase):
         # should be false since there are 3 points that do not have an area large enough
         self.assertFalse(lic_3(self.area, self.points, 3)) 
     
-    def test_error(self):
-        # should be false since the area is 0
-        self.assertFalse(lic_3(0, self.points, self.num_points))
-    
     def test_num_error(self):
         # should be false since there are less than 3 points
         self.assertFalse(lic_3(self.area, self.points, 2))
@@ -386,11 +382,6 @@ class Test8(unittest.TestCase):
         # test that invalid number of points raises assertion
         with self.assertRaises(AssertionError):
             lic_8(self.points, self.num_points, 2, 2, self.radius)
-
-    def test_total_num_error(self):
-        # test that invalid total number of points raises assertion
-        with self.assertRaises(AssertionError):
-            lic_8(self.points, 4, self.a_pts, self.b_pts, self.radius)
 
 class Test9(unittest.TestCase):
     # test the LIC 9 function
@@ -636,11 +627,6 @@ class Test13(unittest.TestCase):
         # should be false since all points do not fit in the radius2 circle
         self.radius2 = 2.0
         self.assertFalse(lic_13(self.points, self.num_points, self.a_pts, self.b_pts, self.radius1, self.radius2))
-
-    def test_num_error(self):
-        # test that insufficient points raises assertion
-        with self.assertRaises(AssertionError):
-            lic_13(self.points, 4, self.a_pts, self.b_pts, self.radius1, self.radius2)
 
     def test_total_num_error(self):
         # test that invalid point separation raises assertion

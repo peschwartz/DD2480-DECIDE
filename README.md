@@ -1,7 +1,9 @@
 # DD2480-DECIDE
+
 DECIDE is a program that implements a launch interceptor system, analyzing radar tracking data to determine whether an interceptor should be launched based on predefined safety and engagement conditions.
 
 ## Description
+
 The function processes up to 100 radar-tracked objects and evaluates them against 15 Launch Interceptor Conditions (LICs). These conditions examine various factors, such as how close or far objects are, whether they form certain angles or shapes, and how they move relative to each other.
 
 To make a final decision, DECIDE uses a Logical Connector Matrix (LCM) and a Preliminary Unlocking Vector (PUV). The LCM defines how conditions should be logically combined using AND/OR rules, while the PUV specifies which conditions must be considered. If all necessary conditions are satisfied, the Funal Unlocking Vector (FUV) signals approval for missile LAUNCH and returns YES; otherwise, the LAUNCH is blocked and returns NO.
@@ -40,6 +42,12 @@ Tests are written using Python's unittest framework. To run all tests:
 
 ```bash
 python -m unittest discover test
+```
+
+## Running the program
+
+```bash
+python decide.py
 ```
 
 ## Project Structure
